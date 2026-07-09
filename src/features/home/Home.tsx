@@ -280,7 +280,7 @@ export function Home() {
 
       {/* 3. TECHNOLOGY SCROLLER — infinite marquee */}
       <section className="bg-black/40 py-10">
-        <p className="mb-6 text-center text-xs font-semibold tracking-widest text-neutral-500 uppercase">
+        <p className="text-primary-400 mb-6 text-center text-xs font-semibold tracking-wider uppercase">
           Especialistas nas Principais Tecnologias de Dados
         </p>
         <Marquee durationSeconds={30} itemClassName="gap-4 pr-4">
