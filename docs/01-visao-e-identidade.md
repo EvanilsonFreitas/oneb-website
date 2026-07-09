@@ -1,12 +1,12 @@
 # Visão e Identidade
 
-## O que é a OneBI
+## O que é a OneB
 
 Empresa especializada em Business Intelligence, Microsoft Fabric, Power BI, SQL Server, Engenharia de Dados, Data Warehouse/Data Lake, integrações, automação, Python, Machine Learning, IA, dashboards executivos, analytics, consultoria e desenvolvimento web corporativo.
 
 ## Posicionamento
 
-A OneBI não vende dashboards nem sistemas. Vende inteligência, decisões e transformação digital.
+A OneB não vende dashboards nem sistemas. Vende inteligência, decisões e transformação digital.
 
 ## Missão
 

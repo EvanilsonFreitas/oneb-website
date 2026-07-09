@@ -113,7 +113,7 @@ export function Values() {
               className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-400 md:text-lg"
             >
               Doze compromissos que orientam cada decisão técnica, comercial e
-              de relacionamento na OneBI — independente do tamanho do projeto ou
+              de relacionamento na OneB — independente do tamanho do projeto ou
               do cliente.
             </motion.p>
           </motion.div>

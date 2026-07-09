@@ -135,7 +135,7 @@ export function BlogDetail() {
                   {post.author.role}
                 </p>
                 <p className="text-xs leading-relaxed text-neutral-400">
-                  Especialista sênior da OneBI. Dedica-se a impulsionar a
+                  Especialista sênior da OneB. Dedica-se a impulsionar a
                   performance analítica corporativa e a democratizar a
                   arquitetura de dados moderna.
                 </p>

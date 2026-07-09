@@ -123,7 +123,7 @@ export function About() {
               variants={fadeIn('up', 0.7)}
               className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-400 md:text-lg"
             >
-              A OneBI nasceu do inconformismo com painéis lentos e planilhas
+              A OneB nasceu do inconformismo com painéis lentos e planilhas
               instáveis. Construímos infraestruturas de dados seguras e
               relatórios velozes para que você lidere seu segmento de mercado
               sem dúvidas analíticas.
@@ -286,7 +286,7 @@ export function About() {
                 Diferenciais
               </h2>
               <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-                Por que Empresas Escolhem a OneBI?
+                Por que Empresas Escolhem a OneB?
               </h3>
               <p className="mt-6 leading-relaxed text-neutral-400">
                 Nossos especialistas atuam com proximidade, entendendo os

@@ -1,6 +1,6 @@
-# Documentação — OneBI
+# Documentação — OneB
 
-Índice da documentação técnica e de produto da plataforma institucional OneBI.
+Índice da documentação técnica e de produto da plataforma institucional OneB.
 
 | Documento                                              | Conteúdo                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------ |

@@ -199,7 +199,7 @@ export function Home() {
       {/* 1.5. CLIENTS STRIP — label on dark bg, full-bleed green logo marquee below */}
       <section className="relative z-10 py-10">
         <p className="text-primary-400 mb-6 text-center text-xs font-semibold tracking-wider uppercase">
-          Empresas que Confiam na OneBI
+          Empresas que Confiam na OneB
         </p>
         <div className="bg-primary-500 py-8">
           <Marquee
@@ -694,7 +694,7 @@ export function Home() {
                     variant="glass"
                     className="w-full px-8 py-3.5 text-base sm:w-auto"
                   >
-                    Conhecer a OneBI
+                    Conhecer a OneB
                   </GlowButton>
                 </Link>
               </div>

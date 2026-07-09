@@ -191,10 +191,10 @@ export function Contact() {
                         E-mail Comercial
                       </p>
                       <a
-                        href="mailto:contato@onebi.com.br"
+                        href="mailto:contato@oneb.com.br"
                         className="hover:text-primary-400 text-sm font-semibold text-white transition-colors"
                       >
-                        contato@onebi.com.br
+                        contato@oneb.com.br
                       </a>
                     </div>
                   </div>

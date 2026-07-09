@@ -5,7 +5,7 @@ Critério de conclusão definido no master prompt de fundação. Todos os itens 
 - [x] Projeto React criado (Vite + TypeScript, template `react-ts`)
 - [x] Vite configurado (`vite.config.ts` com plugin React + Tailwind + alias `@/`)
 - [x] Tailwind CSS configurado (v4, CSS-first, tokens de marca em `src/index.css`)
-- [x] shadcn/ui configurado (preset `nova`, tokens remapeados para a paleta OneBI)
+- [x] shadcn/ui configurado (preset `nova`, tokens remapeados para a paleta OneB)
 - [x] Aliases de import (`@/*` → `src/*`) sincronizados em `tsconfig.json`, `tsconfig.app.json` e `vite.config.ts`
 - [x] ESLint configurado (flat config, TypeScript + React Hooks + jsx-a11y + Prettier, substituindo o `oxlint` padrão do scaffold)
 - [x] Prettier configurado (`prettier-plugin-tailwindcss`, sem conflito com ESLint)

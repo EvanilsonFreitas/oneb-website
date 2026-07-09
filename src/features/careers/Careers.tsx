@@ -182,7 +182,7 @@ export function Careers() {
               Vagas Abertas
             </h2>
             <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              Oportunidades no Time OneBI
+              Oportunidades no Time OneB
             </h3>
           </div>
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-# OneBI
+# OneB
 
 ### Plataforma institucional para uma empresa de Business Intelligence, Engenharia de Dados e Inteligência Artificial
 
@@ -17,13 +17,13 @@
 
 <br />
 
-<img src="./docs/screenshots/home.png" alt="Home da OneBI — hero com fundo estelar animado, CTA duplo e faixa de clientes" width="100%" />
+<img src="./docs/screenshots/home.png" alt="Home da OneB — hero com fundo estelar animado, CTA duplo e faixa de clientes" width="100%" />
 
 <br />
 
 ## Sobre o projeto
 
-Este repositório contém o site institucional completo da **OneBI**, uma marca fictícia posicionada como referência em Business Intelligence, Microsoft Fabric, Engenharia de Dados e Inteligência Artificial. O projeto foi construído do zero como um exercício de engenharia de front-end de ponta a ponta: fundação técnica, design system próprio, catálogo de páginas institucionais e conteúdo, com foco explícito em qualidade de produção — não um protótipo.
+Este repositório contém o site institucional completo da **OneB**, uma marca fictícia posicionada como referência em Business Intelligence, Microsoft Fabric, Engenharia de Dados e Inteligência Artificial. O projeto foi construído do zero como um exercício de engenharia de front-end de ponta a ponta: fundação técnica, design system próprio, catálogo de páginas institucionais e conteúdo, com foco explícito em qualidade de produção — não um protótipo.
 
 A identidade visual segue um tema espacial (universo, constelações, planetas) sobre um Dark Theme obrigatório, com duas cores de marca:
 

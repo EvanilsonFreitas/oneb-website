@@ -1,3 +1,3 @@
 # assets/icons
 
-Ícones customizados da marca OneBI que não fazem parte do pacote Lucide Icons.
+Ícones customizados da marca OneB que não fazem parte do pacote Lucide Icons.

@@ -30,8 +30,8 @@ export function Terms() {
           </h2>
           <p>
             Todo o conteúdo textual, ilustrações técnicas de arquitetura,
-            códigos demonstrativos e logotipos exibidos no portal OneBI são de
-            propriedade intelectual exclusiva da OneBI Ltda. É proibida a
+            códigos demonstrativos e logotipos exibidos no portal OneB são de
+            propriedade intelectual exclusiva da OneB Ltda. É proibida a
             reprodução ou cópia de nossos dashboards e artigos analíticos sem
             autorização prévia por escrito.
           </p>
@@ -42,7 +42,7 @@ export function Terms() {
           <p>
             O conteúdo do blog e as simulações de agendamento são oferecidos
             para fins demonstrativos e informativos. Embora nossa meta técnica
-            seja a exatidão absoluta, a OneBI não se responsabiliza por perdas e
+            seja a exatidão absoluta, a OneB não se responsabiliza por perdas e
             danos decorrentes de decisões tomadas com base exclusiva nos artigos
             públicos sem consultoria personalizada.
           </p>

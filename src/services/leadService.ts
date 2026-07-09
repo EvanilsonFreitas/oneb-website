@@ -46,10 +46,10 @@ export const leadService = {
 
     // Simular gravação (salva no localStorage para testes)
     const currentLeads = JSON.parse(
-      localStorage.getItem('onebi_contact_leads') || '[]',
+      localStorage.getItem('oneb_contact_leads') || '[]',
     ) as ContactLead[]
     currentLeads.push(lead)
-    localStorage.setItem('onebi_contact_leads', JSON.stringify(currentLeads))
+    localStorage.setItem('oneb_contact_leads', JSON.stringify(currentLeads))
 
     console.log('[Lead Service] Novo Lead de Contato Salvo:', lead)
     return {
@@ -69,7 +69,7 @@ export const leadService = {
     }
 
     const currentLeads = JSON.parse(
-      localStorage.getItem('onebi_newsletter_leads') || '[]',
+      localStorage.getItem('oneb_newsletter_leads') || '[]',
     ) as NewsletterLead[]
     if (currentLeads.some((l: NewsletterLead) => l.email === email)) {
       return {
@@ -79,13 +79,13 @@ export const leadService = {
     }
 
     currentLeads.push(lead)
-    localStorage.setItem('onebi_newsletter_leads', JSON.stringify(currentLeads))
+    localStorage.setItem('oneb_newsletter_leads', JSON.stringify(currentLeads))
 
     console.log('[Lead Service] Nova Inscrição de Newsletter:', lead)
     return {
       success: true,
       message:
-        'Inscrição realizada com sucesso! Obrigado por acompanhar a OneBI.',
+        'Inscrição realizada com sucesso! Obrigado por acompanhar a OneB.',
     }
   },
 
@@ -100,10 +100,10 @@ export const leadService = {
     }
 
     const currentLeads = JSON.parse(
-      localStorage.getItem('onebi_meeting_leads') || '[]',
+      localStorage.getItem('oneb_meeting_leads') || '[]',
     ) as MeetingLead[]
     currentLeads.push(lead)
-    localStorage.setItem('onebi_meeting_leads', JSON.stringify(currentLeads))
+    localStorage.setItem('oneb_meeting_leads', JSON.stringify(currentLeads))
 
     console.log('[Lead Service] Reunião Agendada com Sucesso:', lead)
     return {
@@ -123,11 +123,11 @@ export const leadService = {
     }
 
     const currentApplications = JSON.parse(
-      localStorage.getItem('onebi_talent_applications') || '[]',
+      localStorage.getItem('oneb_talent_applications') || '[]',
     ) as TalentApplication[]
     currentApplications.push(application)
     localStorage.setItem(
-      'onebi_talent_applications',
+      'oneb_talent_applications',
       JSON.stringify(currentApplications),
     )
 

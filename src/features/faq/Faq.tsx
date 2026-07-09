@@ -40,7 +40,7 @@ export function Faq() {
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-400">
               Dúvidas comuns sobre como funciona o processo de contratação,
-              execução e suporte dos projetos da OneBI.
+              execução e suporte dos projetos da OneB.
             </p>
 
             <div className="relative mt-8 w-full max-w-md">

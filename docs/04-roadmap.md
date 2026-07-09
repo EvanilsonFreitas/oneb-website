@@ -6,7 +6,7 @@ Scaffolding do projeto, ferramentas de qualidade, estrutura de pastas enterprise
 
 ## Fase 2 — Design System Visual
 
-Construção dos componentes proprietários do Design System OneBI sobre a base shadcn: Button, Input, Card, Badge, tipografia (Display/Heading/Title/Subtitle/Body/Caption), tokens de shadow e glassmorphism, primeira composição 3D de teste (React Three Fiber).
+Construção dos componentes proprietários do Design System OneB sobre a base shadcn: Button, Input, Card, Badge, tipografia (Display/Heading/Title/Subtitle/Body/Caption), tokens de shadow e glassmorphism, primeira composição 3D de teste (React Three Fiber).
 
 ## Fase 3 — Layout e Navegação
 

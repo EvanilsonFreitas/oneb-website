@@ -14,17 +14,17 @@ import {
 const socialLinks = [
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/company/onebi',
+    href: 'https://linkedin.com/company/oneb',
     Icon: IconLinkedIn,
   },
-  { name: 'X', href: 'https://x.com/onebi', Icon: IconX },
+  { name: 'X', href: 'https://x.com/oneb', Icon: IconX },
   {
     name: 'Instagram',
-    href: 'https://instagram.com/onebi',
+    href: 'https://instagram.com/oneb',
     Icon: IconInstagram,
   },
-  { name: 'Facebook', href: 'https://facebook.com/onebi', Icon: IconFacebook },
-  { name: 'GitHub', href: 'https://github.com/onebi', Icon: IconGitHub },
+  { name: 'Facebook', href: 'https://facebook.com/oneb', Icon: IconFacebook },
+  { name: 'GitHub', href: 'https://github.com/oneb', Icon: IconGitHub },
 ]
 
 export function Footer() {
@@ -84,7 +84,7 @@ export function Footer() {
             <Link to="/" className="flex items-center">
               <img
                 src={asset('Logo/logo.svg')}
-                alt="OneBI"
+                alt="OneB"
                 className="h-10 w-auto"
               />
             </Link>
@@ -308,7 +308,7 @@ export function Footer() {
         {/* Footer Bottom */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 text-xs text-neutral-500 md:flex-row">
           <p>
-            © {new Date().getFullYear()} OneBI Ltda. Todos os direitos
+            © {new Date().getFullYear()} OneB Ltda. Todos os direitos
             reservados.
           </p>
           <div className="flex gap-6">

@@ -628,7 +628,7 @@ export const casesData: CaseStudy[] = [
       role: 'Diretora de Operações, Multivarejo Brasil',
     },
     duration: '4 meses',
-    teamSize: '3 especialistas OneBI',
+    teamSize: '3 especialistas OneB',
     image:
       'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600&auto=format&fit=crop',
   },
@@ -676,7 +676,7 @@ export const casesData: CaseStudy[] = [
       role: 'CFO, Financeira Alfa',
     },
     duration: '5 meses',
-    teamSize: '4 especialistas OneBI',
+    teamSize: '4 especialistas OneB',
     image:
       'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop',
   },
@@ -723,12 +723,12 @@ export const casesData: CaseStudy[] = [
       },
     ],
     quote: {
-      text: 'Não precisávamos de mais relatórios. Precisávamos de um único número em que todo mundo confiasse — e foi isso que a OneBI entregou.',
+      text: 'Não precisávamos de mais relatórios. Precisávamos de um único número em que todo mundo confiasse — e foi isso que a OneB entregou.',
       author: 'Eduardo Bastos',
       role: 'Diretor Industrial, Metalúrgica Imperial',
     },
     duration: '6 meses',
-    teamSize: '3 especialistas OneBI',
+    teamSize: '3 especialistas OneB',
     image:
       'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop',
   },
@@ -1085,8 +1085,8 @@ export const projectsData: Project[] = [
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
   },
   {
-    slug: 'site-institucional-onebi',
-    title: 'Plataforma Institucional OneBI',
+    slug: 'site-institucional-oneb',
+    title: 'Plataforma Institucional OneB',
     category: 'Desenvolvimento Web',
     description:
       'Site institucional premium com design system proprietário, animações 3D e integração com Supabase para captação de leads.',
@@ -1112,7 +1112,7 @@ export const testimonialsData: Testimonial[] = [
     role: 'Diretora de Operações',
     company: 'Multivarejo Brasil',
     quote:
-      'A OneBI reduziu nosso custo logístico em quase 20% em menos de um trimestre. Mais que um fornecedor de relatórios, ganhamos um parceiro que entende a operação de varejo.',
+      'A OneB reduziu nosso custo logístico em quase 20% em menos de um trimestre. Mais que um fornecedor de relatórios, ganhamos um parceiro que entende a operação de varejo.',
     avatar:
       'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop',
   },
@@ -1121,7 +1121,7 @@ export const testimonialsData: Testimonial[] = [
     role: 'CFO',
     company: 'Financeira Alfa',
     quote:
-      'Fechávamos o mês em 5 dias. Depois da migração para o Microsoft Fabric conduzida pela OneBI, fechamos em 1 dia útil, com muito mais confiança nos números.',
+      'Fechávamos o mês em 5 dias. Depois da migração para o Microsoft Fabric conduzida pela OneB, fechamos em 1 dia útil, com muito mais confiança nos números.',
     avatar:
       'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop',
   },
@@ -1130,7 +1130,7 @@ export const testimonialsData: Testimonial[] = [
     role: 'Gerente de TI',
     company: 'Metalúrgica Imperial',
     quote:
-      'Tínhamos mais de 200 relatórios não homologados circulando na empresa. A OneBI trouxe ordem, governança e uma cultura de self-service BI que se sustenta até hoje.',
+      'Tínhamos mais de 200 relatórios não homologados circulando na empresa. A OneB trouxe ordem, governança e uma cultura de self-service BI que se sustenta até hoje.',
     avatar:
       'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=150&auto=format&fit=crop',
   },
@@ -1250,7 +1250,7 @@ export const generalFaqData: FaqItem[] = [
       'Começamos com uma reunião técnica gratuita de 30 minutos para entender seus desafios de dados. A partir daí, elaboramos uma proposta técnica e comercial detalhada, sem custo e sem compromisso.',
   },
   {
-    question: 'A OneBI atende empresas de qualquer porte?',
+    question: 'A OneB atende empresas de qualquer porte?',
     answer:
       'Atendemos principalmente médias e grandes empresas com operações de dados já estruturadas, mas também apoiamos empresas em estágio de maturidade analítica inicial que buscam construir uma base sólida desde o começo.',
   },

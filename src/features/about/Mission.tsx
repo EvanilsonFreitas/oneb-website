@@ -59,7 +59,7 @@ export function Mission() {
             >
               Desenvolvemos tecnologias que simplificam processos, impulsionam
               resultados e aceleram a evolução digital dos nossos clientes —
-              essa é a razão de a OneBI existir.
+              essa é a razão de a OneB existir.
             </motion.p>
           </motion.div>
         </div>

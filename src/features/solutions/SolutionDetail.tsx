@@ -293,7 +293,7 @@ export function SolutionDetail() {
               <div
                 className={`mb-5 inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs font-semibold tracking-wider uppercase ${accent.border} ${accent.bgSoft} ${accent.text}`}
               >
-                Solução OneBI
+                Solução OneB
               </div>
               <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                 {solution.title}

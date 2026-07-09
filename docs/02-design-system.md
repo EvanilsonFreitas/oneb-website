@@ -34,9 +34,9 @@ Escalas de texto (Display, Heading, Title, Subtitle, Body, Caption, Button, Labe
 
 ## Base de componentes — shadcn/ui
 
-Inicializado com `shadcn@latest init --template vite --base base --preset nova`, usando **Tailwind v4** e aliases `@/components`, `@/lib`, `@/hooks`. Os tokens semânticos do shadcn (`--primary`, `--secondary`, `--background`, `--card`, etc.) foram remapeados em `src/index.css` para apontar para a paleta OneBI, e não para os tons neutros padrão do preset.
+Inicializado com `shadcn@latest init --template vite --base base --preset nova`, usando **Tailwind v4** e aliases `@/components`, `@/lib`, `@/hooks`. Os tokens semânticos do shadcn (`--primary`, `--secondary`, `--background`, `--card`, etc.) foram remapeados em `src/index.css` para apontar para a paleta OneB, e não para os tons neutros padrão do preset.
 
-Regra de arquitetura: componentes gerados por `npx shadcn add` vivem em `src/components/ui` e servem apenas como **base**. Qualquer componente exposto às páginas do site deve passar por adaptação em `src/components/common` ou `src/components/sections` para refletir a identidade visual OneBI.
+Regra de arquitetura: componentes gerados por `npx shadcn add` vivem em `src/components/ui` e servem apenas como **base**. Qualquer componente exposto às páginas do site deve passar por adaptação em `src/components/common` ou `src/components/sections` para refletir a identidade visual OneB.
 
 ## Espaçamento
 

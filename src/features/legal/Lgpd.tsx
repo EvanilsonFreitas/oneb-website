@@ -45,10 +45,10 @@ export function Lgpd() {
             e-mail cadastrado na newsletter ou seus dados de leads comercial),
             envie um e-mail para{' '}
             <a
-              href="mailto:privacidade@onebi.com.br"
+              href="mailto:privacidade@oneb.com.br"
               className="text-primary-400 font-semibold hover:text-white"
             >
-              privacidade@onebi.com.br
+              privacidade@oneb.com.br
             </a>
             . Processaremos sua solicitação legal em até 15 dias úteis.
           </p>

@@ -117,7 +117,7 @@ export function Navbar() {
           >
             <img
               src={asset('Logo/logo.svg')}
-              alt="OneBI"
+              alt="OneB"
               className="h-11 w-auto"
             />
           </Link>
@@ -347,7 +347,7 @@ export function Navbar() {
                 >
                   <img
                     src={asset('Logo/logo.svg')}
-                    alt="OneBI"
+                    alt="OneB"
                     className="h-9 w-auto"
                   />
                 </Link>
