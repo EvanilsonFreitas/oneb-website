@@ -42,7 +42,7 @@ const accentStyles = {
     dot: 'bg-secondary-500',
     tab: 'bg-secondary-500',
     tabText: 'text-white',
-    glow: 'rgba(126, 87, 225, 0.18)',
+    glow: 'rgba(62, 240, 170, 0.18)',
     check: 'bg-secondary-500/10 text-secondary-400',
   },
 } as const

@@ -10,11 +10,7 @@ Definidas como tokens Tailwind v4 (`@theme`) em [src/index.css](../src/index.css
 
 ### Primary — `#3EF0AA`
 
-Convertido para `hsl(156 85% 59%)` como base da escala 50–950 (tecnologia, inovação, energia, inteligência).
-
-### Secondary — `#7E57E1`
-
-Convertido para `hsl(257 70% 61%)` como base da escala 50–950 (IA, futuro, criatividade).
+Cor única de marca — não existe mais uma segunda cor (roxo/violeta). Convertido para `hsl(156 85% 59%)` como base da escala 50–950 (tecnologia, inovação, energia, inteligência, IA, destaques).
 
 ### Superfícies (dark-only)
 

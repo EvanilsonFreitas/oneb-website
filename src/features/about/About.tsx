@@ -211,7 +211,7 @@ export function About() {
                 {/* Content Box */}
                 <GlassCard
                   className="max-w-2xl bg-neutral-950/60"
-                  glowColor="rgba(126, 87, 225, 0.12)"
+                  glowColor="rgba(62, 240, 170, 0.12)"
                 >
                   <h4 className="mb-2 flex items-center gap-2 text-base font-bold text-white">
                     <Calendar className="h-4 w-4 text-neutral-400" />
@@ -329,7 +329,7 @@ export function About() {
 
               <GlassCard
                 className="border-white/10 p-8 text-center"
-                glowColor="rgba(126, 87, 225, 0.15)"
+                glowColor="rgba(62, 240, 170, 0.15)"
               >
                 <ArrowUpRight
                   className="text-secondary-400 mx-auto mb-4 h-8 w-8 animate-bounce"
@@ -419,7 +419,7 @@ export function About() {
           >
             <GlassCard
               className="border-secondary-500/20 relative overflow-hidden border bg-neutral-950/80 p-12 text-center"
-              glowColor="rgba(126, 87, 225, 0.2)"
+              glowColor="rgba(62, 240, 170, 0.2)"
             >
               <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                 Vamos Construir Sua Estratégia de Dados?

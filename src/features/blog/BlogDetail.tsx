@@ -120,7 +120,7 @@ export function BlogDetail() {
           <div className="mt-12">
             <GlassCard
               className="flex flex-col items-center gap-4 border-white/10 bg-neutral-950/60 p-6 sm:flex-row sm:items-start"
-              glowColor="rgba(126, 87, 225, 0.1)"
+              glowColor="rgba(62, 240, 170, 0.1)"
             >
               <img
                 src={post.author.avatar}

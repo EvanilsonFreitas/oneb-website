@@ -137,7 +137,7 @@ export function Values() {
                   glowColor={
                     idx % 2 === 0
                       ? 'rgba(62, 240, 170, 0.1)'
-                      : 'rgba(126, 87, 225, 0.1)'
+                      : 'rgba(62, 240, 170, 0.1)'
                   }
                 >
                   <div

@@ -25,12 +25,11 @@
 
 Este repositório contém o site institucional completo da **OneB**, uma marca fictícia posicionada como referência em Business Intelligence, Microsoft Fabric, Engenharia de Dados e Inteligência Artificial. O projeto foi construído do zero como um exercício de engenharia de front-end de ponta a ponta: fundação técnica, design system próprio, catálogo de páginas institucionais e conteúdo, com foco explícito em qualidade de produção — não um protótipo.
 
-A identidade visual segue um tema espacial (universo, constelações, planetas) sobre um Dark Theme obrigatório, com duas cores de marca:
+A identidade visual segue um tema espacial (universo, constelações, planetas) sobre um Dark Theme obrigatório, com uma única cor de marca:
 
-| Token     | Hex       | Papel                               |
-| --------- | --------- | ----------------------------------- |
-| Primary   | `#3EF0AA` | Tecnologia, energia, CTAs primários |
-| Secondary | `#7E57E1` | Inteligência artificial, destaques  |
+| Token   | Hex       | Papel                                    |
+| ------- | --------- | ---------------------------------------- |
+| Primary | `#3EF0AA` | Tecnologia, energia, CTAs, destaques, IA |
 
 O objetivo de negócio simulado é o de qualquer site institucional B2B premium: comunicar autoridade técnica, apresentar soluções e cases reais, publicar conteúdo (blog) e converter visitantes em leads qualificados — sem parecer um template genérico.
 

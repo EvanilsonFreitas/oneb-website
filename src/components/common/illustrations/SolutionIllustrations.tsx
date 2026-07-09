@@ -4,13 +4,12 @@ import type { SVGProps } from 'react'
 /**
  * Thematic, brand-colored SVG illustrations — one per solution — used to make
  * each solution page visually distinct instead of repeating the same card grid.
- * Primary = #3EF0AA (teal), Secondary = #7E57E1 (violet).
+ * Brand color: #3EF0AA (teal). No secondary/purple accent.
  */
 
 type Props = SVGProps<SVGSVGElement>
 
 const TEAL = '#3EF0AA'
-const VIOLET = '#7E57E1'
 
 /** Business Intelligence — executive dashboard with chart bars and a donut. */
 export function IllustrationBI(props: Props) {
@@ -63,7 +62,7 @@ export function IllustrationBI(props: Props) {
         cx="285"
         cy="140"
         r="38"
-        stroke={VIOLET}
+        stroke={TEAL}
         strokeWidth="14"
         fill="none"
         opacity="0.35"
@@ -92,7 +91,7 @@ export function IllustrationBI(props: Props) {
         width="90"
         height="10"
         rx="5"
-        fill={VIOLET}
+        fill={TEAL}
         opacity="0.7"
       />
     </svg>
@@ -110,8 +109,8 @@ export function IllustrationFabric(props: Props) {
     >
       <defs>
         <radialGradient id="fab-glow" cx="0.5" cy="0.5" r="0.6">
-          <stop offset="0" stopColor={VIOLET} stopOpacity="0.2" />
-          <stop offset="1" stopColor={VIOLET} stopOpacity="0" />
+          <stop offset="0" stopColor={TEAL} stopOpacity="0.2" />
+          <stop offset="1" stopColor={TEAL} stopOpacity="0" />
         </radialGradient>
       </defs>
       <rect width="400" height="300" fill="url(#fab-glow)" />
@@ -119,7 +118,7 @@ export function IllustrationFabric(props: Props) {
         <g key={i} transform={`translate(0 ${i * 46})`}>
           <path
             d="M200 70l110 30-110 30L90 100z"
-            fill={i === 2 ? TEAL : i === 1 ? VIOLET : '#2a2a2e'}
+            fill={i === 0 ? '#2a2a2e' : TEAL}
             fillOpacity={i === 2 ? 0.85 : i === 1 ? 0.7 : 1}
             stroke="#ffffff20"
           />
@@ -143,7 +142,7 @@ export function IllustrationFabric(props: Props) {
         OneLake
       </text>
       <circle cx="90" cy="100" r="5" fill={TEAL} />
-      <circle cx="310" cy="100" r="5" fill={VIOLET} />
+      <circle cx="310" cy="100" r="5" fill={TEAL} />
     </svg>
   )
 }
@@ -193,10 +192,10 @@ export function IllustrationEngineering(props: Props) {
         height="60"
         rx="12"
         fill="#0c0c0d"
-        stroke={VIOLET}
+        stroke={TEAL}
         strokeOpacity="0.6"
       />
-      <path d="M186 150l8-8 8 8-8 8zM206 150l8-8 8 8-8 8z" fill={VIOLET} />
+      <path d="M186 150l8-8 8 8-8 8zM206 150l8-8 8 8-8 8z" fill={TEAL} />
       {/* pipe to warehouse */}
       <path d="M232 150h56" stroke={TEAL} strokeWidth="2.5" fill="none" />
       <circle cx="260" cy="150" r="3" fill={TEAL} />
@@ -242,8 +241,8 @@ export function IllustrationAI(props: Props) {
     >
       <defs>
         <radialGradient id="ai-glow" cx="0.5" cy="0.5" r="0.6">
-          <stop offset="0" stopColor={VIOLET} stopOpacity="0.2" />
-          <stop offset="1" stopColor={VIOLET} stopOpacity="0" />
+          <stop offset="0" stopColor={TEAL} stopOpacity="0.2" />
+          <stop offset="1" stopColor={TEAL} stopOpacity="0" />
         </radialGradient>
       </defs>
       <rect width="400" height="300" fill="url(#ai-glow)" />
@@ -258,7 +257,7 @@ export function IllustrationAI(props: Props) {
                 y1={y1}
                 x2={xs[li + 1]}
                 y2={y2}
-                stroke={(i + j) % 2 === 0 ? TEAL : VIOLET}
+                stroke={TEAL}
                 strokeOpacity="0.28"
                 strokeWidth="1.4"
               />
@@ -273,7 +272,7 @@ export function IllustrationAI(props: Props) {
             cy={y}
             r="11"
             fill="#0c0c0d"
-            stroke={li === 2 ? TEAL : VIOLET}
+            stroke={TEAL}
             strokeWidth="2.5"
           />
         )),
@@ -333,21 +332,21 @@ export function IllustrationConsulting(props: Props) {
         strokeDasharray="4 6"
       />
       {[
-        [80, 200, TEAL],
-        [160, 130, VIOLET],
-        [240, 150, TEAL],
-        [320, 90, VIOLET],
-      ].map(([x, y, c], i) => (
+        [80, 200],
+        [160, 130],
+        [240, 150],
+        [320, 90],
+      ].map(([x, y], i) => (
         <g key={i}>
           <circle
-            cx={x as number}
-            cy={y as number}
+            cx={x}
+            cy={y}
             r="9"
             fill="#0c0c0d"
-            stroke={c as string}
+            stroke={TEAL}
             strokeWidth="2.5"
           />
-          <circle cx={x as number} cy={y as number} r="3" fill={c as string} />
+          <circle cx={x} cy={y} r="3" fill={TEAL} />
         </g>
       ))}
     </svg>

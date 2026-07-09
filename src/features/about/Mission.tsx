@@ -117,7 +117,7 @@ export function Mission() {
           >
             <GlassCard
               className="border-secondary-500/20 border p-10 text-center md:p-14"
-              glowColor="rgba(126, 87, 225, 0.15)"
+              glowColor="rgba(62, 240, 170, 0.15)"
             >
               <Eye className="text-secondary-400 mx-auto mb-5 h-8 w-8" />
               <p className="text-secondary-400 mb-3 text-xs font-semibold tracking-wider uppercase">

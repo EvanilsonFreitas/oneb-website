@@ -95,7 +95,7 @@ export function Projects() {
                   >
                     <GlassCard
                       className="flex flex-col overflow-hidden p-0"
-                      glowColor="rgba(126, 87, 225, 0.15)"
+                      glowColor="rgba(62, 240, 170, 0.15)"
                     >
                       <div className="relative h-44 w-full overflow-hidden border-b border-white/5 bg-neutral-900">
                         <img

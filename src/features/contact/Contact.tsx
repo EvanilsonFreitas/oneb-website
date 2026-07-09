@@ -425,7 +425,7 @@ export function Contact() {
               {/* Form 2: Interactive Scheduler Calendar Simulation */}
               <GlassCard
                 className="border-white/10 bg-neutral-950/20 p-8"
-                glowColor="rgba(126, 87, 225, 0.15)"
+                glowColor="rgba(62, 240, 170, 0.15)"
                 interactive={false}
               >
                 <h3 className="mb-2 flex items-center gap-2 text-lg font-bold text-white">
@@ -482,7 +482,7 @@ export function Contact() {
                           onClick={() => setSelectedTime(time)}
                           className={`flex cursor-pointer items-center justify-center rounded-lg border py-2 text-xs font-bold transition-all ${
                             selectedTime === time
-                              ? 'border-secondary-500 bg-secondary-500/10 text-white shadow-[0_0_8px_rgba(126,87,225,0.15)]'
+                              ? 'border-secondary-500 bg-secondary-500/10 text-white shadow-[0_0_8px_rgba(62,240,170,0.15)]'
                               : 'border-white/5 bg-white/5 text-neutral-400 hover:border-white/10 hover:text-white'
                           }`}
                         >

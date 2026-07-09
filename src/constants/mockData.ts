@@ -24,7 +24,7 @@ export interface Solution {
     | 'IllustrationEngineering'
     | 'IllustrationAI'
     | 'IllustrationConsulting'
-  /** 'primary' (teal) or 'secondary' (violet) accent for this solution. */
+  /** 'primary' or 'secondary' accent variant for this solution (both render in teal). */
   accent: 'primary' | 'secondary'
   tagline: string
   description: string

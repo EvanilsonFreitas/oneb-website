@@ -477,7 +477,7 @@ export function Home() {
               >
                 <GlassCard
                   className="flex h-full flex-col overflow-hidden p-0"
-                  glowColor="rgba(126, 87, 225, 0.15)"
+                  glowColor="rgba(62, 240, 170, 0.15)"
                 >
                   {/* Visual card header image background placeholder */}
                   <div className="relative h-44 w-full overflow-hidden border-b border-white/5 bg-neutral-900">
@@ -557,7 +557,7 @@ export function Home() {
               >
                 <GlassCard
                   className="flex h-full flex-col justify-between"
-                  glowColor="rgba(126, 87, 225, 0.12)"
+                  glowColor="rgba(62, 240, 170, 0.12)"
                 >
                   <Quote className="text-secondary-500/40 mb-4 h-7 w-7" />
                   <p className="mb-6 text-sm leading-relaxed text-neutral-300">

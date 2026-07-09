@@ -154,7 +154,7 @@ export function Careers() {
               >
                 <GlassCard
                   className="flex h-full items-start gap-4"
-                  glowColor="rgba(126, 87, 225, 0.12)"
+                  glowColor="rgba(62, 240, 170, 0.12)"
                 >
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/5 bg-neutral-900">
                     {value.icon}

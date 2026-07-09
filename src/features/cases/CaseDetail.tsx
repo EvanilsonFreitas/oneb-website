@@ -181,7 +181,7 @@ export function CaseDetail() {
               <div className="flex flex-col gap-6 lg:sticky lg:top-28">
                 <GlassCard
                   className="border-white/10"
-                  glowColor="rgba(126, 87, 225, 0.15)"
+                  glowColor="rgba(62, 240, 170, 0.15)"
                 >
                   <Quote className="text-secondary-400 h-6 w-6 -scale-x-100" />
                   <p className="mt-4 text-sm leading-relaxed text-neutral-200 italic">

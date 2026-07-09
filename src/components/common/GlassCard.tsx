@@ -10,7 +10,7 @@ interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
 export function GlassCard({
   children,
   className,
-  glowColor = 'rgba(126, 87, 225, 0.15)', // Default is secondary (violet)
+  glowColor = 'rgba(62, 240, 170, 0.15)', // Default is primary (teal)
   interactive = true,
   ...props
 }: GlassCardProps) {

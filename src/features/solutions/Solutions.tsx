@@ -17,7 +17,7 @@ const accentStyles = {
     text: 'text-secondary-400',
     bgSoft: 'bg-secondary-500/10',
     border: 'border-secondary-500/20',
-    glow: 'rgba(126, 87, 225, 0.16)',
+    glow: 'rgba(62, 240, 170, 0.16)',
   },
 } as const
 
