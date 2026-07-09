@@ -85,7 +85,7 @@ export function Footer() {
               <img
                 src={asset('Logo/logo.svg')}
                 alt="OneBI"
-                className="h-8 w-auto"
+                className="h-10 w-auto"
               />
             </Link>
             <p className="text-sm leading-relaxed text-neutral-400">

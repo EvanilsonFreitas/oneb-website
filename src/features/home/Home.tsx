@@ -18,6 +18,7 @@ import { fadeIn, staggerContainer } from '@/animations/variants'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
 import { Marquee } from '@/components/common/Marquee'
+import { CountUp } from '@/components/common/CountUp'
 import { brandLogos } from '@/components/common/BrandLogos'
 import { IllustrationEngineering } from '@/components/common/illustrations/SolutionIllustrations'
 import {
@@ -190,16 +191,22 @@ export function Home() {
         </div>
       </section>
 
-      {/* 1.5. CLIENTS STRIP — full-bleed green infinite logo marquee */}
-      <section className="bg-primary-500 relative z-10 py-8">
-        <p className="mb-6 text-center text-xs font-bold tracking-widest text-neutral-950/70 uppercase">
+      {/* 1.5. CLIENTS STRIP — label on dark bg, full-bleed green logo marquee below */}
+      <section className="relative z-10 py-10">
+        <p className="mb-6 text-center text-xs font-semibold tracking-widest text-neutral-500 uppercase">
           Empresas que Confiam na OneBI
         </p>
-        <Marquee durationSeconds={38} itemClassName="gap-16 pr-16" fade={false}>
-          {brandLogos.map((Logo, idx) => (
-            <Logo key={idx} className="h-7 w-auto text-neutral-950" />
-          ))}
-        </Marquee>
+        <div className="bg-primary-500 py-8">
+          <Marquee
+            durationSeconds={38}
+            itemClassName="gap-16 pr-16"
+            fade={false}
+          >
+            {brandLogos.map((Logo, idx) => (
+              <Logo key={idx} className="h-9 w-auto text-neutral-950" />
+            ))}
+          </Marquee>
+        </div>
       </section>
 
       {/* 2. STATS SECTION */}
@@ -219,7 +226,7 @@ export function Home() {
                   {stat.icon}
                 </div>
                 <span className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-                  {stat.value}
+                  <CountUp value={stat.value} />
                 </span>
                 <span className="mt-2 text-xs text-neutral-400 md:text-sm">
                   {stat.label}
