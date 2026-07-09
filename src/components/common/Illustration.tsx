@@ -1,4 +1,5 @@
 import { useState, type ImgHTMLAttributes } from 'react'
+import { asset } from '@/lib/utils'
 
 interface IllustrationProps extends ImgHTMLAttributes<HTMLImageElement> {
   /** File name inside `public/Ilustration/`, e.g. "astronaut.png". */
@@ -18,7 +19,7 @@ export function Illustration({ name, alt, ...props }: IllustrationProps) {
 
   return (
     <img
-      src={`/Ilustration/${name}`}
+      src={asset(`Ilustration/${name}`)}
       alt={alt}
       onError={() => setFailed(true)}
       {...props}

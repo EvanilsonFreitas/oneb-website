@@ -25,16 +25,19 @@ export function About() {
       title: 'Nossa Missão',
       desc: 'Transformar dados brutos em decisões inteligentes, simplificando fluxos operacionais e impulsionando a eficiência dos nossos clientes.',
       icon: <Compass className="text-primary-400 h-6 w-6" />,
+      to: '/missao',
     },
     {
       title: 'Nossa Visão',
       desc: 'Ser o principal ecossistema analítico de referência no Brasil em Business Intelligence, Microsoft Fabric e Inteligência Artificial corporativa.',
       icon: <Award className="text-secondary-400 h-6 w-6" />,
+      to: null,
     },
     {
       title: 'Nossos Valores',
       desc: 'Excelência técnica intransigente, ética em todas as relações comerciais, inovação contínua e compromisso absoluto com o retorno sobre investimento (ROI).',
       icon: <Heart className="text-primary-400 h-6 w-6" />,
+      to: '/valores',
     },
   ]
 
@@ -155,6 +158,14 @@ export function About() {
                   <p className="text-sm leading-relaxed text-neutral-400">
                     {pillar.desc}
                   </p>
+                  {pillar.to && (
+                    <Link
+                      to={pillar.to}
+                      className="text-primary-400 mt-4 inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:text-white"
+                    >
+                      Saiba mais <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
                 </GlassCard>
               </motion.div>
             ))}

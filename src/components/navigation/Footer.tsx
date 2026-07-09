@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Send, ShieldCheck } from 'lucide-react'
 import { leadService } from '@/services/leadService'
+import { asset } from '@/lib/utils'
 import {
   IconLinkedIn,
   IconX,
@@ -81,7 +82,11 @@ export function Footer() {
           {/* Logo & About Column */}
           <div className="flex flex-col gap-6">
             <Link to="/" className="flex items-center">
-              <img src="/Logo/logo.svg" alt="OneBI" className="h-8 w-auto" />
+              <img
+                src={asset('Logo/logo.svg')}
+                alt="OneBI"
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="text-sm leading-relaxed text-neutral-400">
               Desenvolvemos inteligência de dados de alta performance,
@@ -187,6 +192,22 @@ export function Footer() {
                   className="text-sm text-neutral-400 transition-colors hover:text-white"
                 >
                   Quem Somos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/missao"
+                  className="text-sm text-neutral-400 transition-colors hover:text-white"
+                >
+                  Nossa Missão
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/valores"
+                  className="text-sm text-neutral-400 transition-colors hover:text-white"
+                >
+                  Nossos Valores
                 </Link>
               </li>
               <li>

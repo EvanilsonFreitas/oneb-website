@@ -11,8 +11,12 @@ import {
   Database,
   Brain,
   Compass,
+  Building2,
+  Target,
+  Heart,
+  Briefcase,
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn, asset } from '@/lib/utils'
 import { GlowButton } from '@/components/common/GlowButton'
 import { solutionsData } from '@/constants/mockData'
 
@@ -34,10 +38,39 @@ const getSolutionIcon = (iconName: string) => {
   }
 }
 
+const institutionalLinks = [
+  {
+    to: '/quem-somos',
+    title: 'Quem Somos',
+    description: 'Nossa história, cultura e metodologia de trabalho.',
+    icon: <Building2 className="text-primary-400 h-5 w-5" />,
+  },
+  {
+    to: '/missao',
+    title: 'Nossa Missão',
+    description: 'Por que existimos e o que buscamos transformar.',
+    icon: <Target className="text-primary-400 h-5 w-5" />,
+  },
+  {
+    to: '/valores',
+    title: 'Nossos Valores',
+    description: 'Os princípios que guiam cada projeto que entregamos.',
+    icon: <Heart className="text-primary-400 h-5 w-5" />,
+  },
+  {
+    to: '/carreira',
+    title: 'Carreira',
+    description: 'Vagas abertas e nosso banco de talentos.',
+    icon: <Briefcase className="text-primary-400 h-5 w-5" />,
+  },
+]
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [solutionsOpen, setSolutionsOpen] = useState(false)
+  const [institutionalOpen, setInstitutionalOpen] = useState(false)
+  const [mobileInstitutionalOpen, setMobileInstitutionalOpen] = useState(false)
   const location = useLocation()
 
   // Track page scroll to toggle dark sticky background opacity
@@ -61,6 +94,10 @@ export function Navbar() {
     }
   }, [isOpen])
 
+  const isInstitutionalActive = institutionalLinks.some((link) =>
+    location.pathname.startsWith(link.to),
+  )
+
   return (
     <>
       <header
@@ -78,7 +115,11 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
             className="flex items-center"
           >
-            <img src="/Logo/logo.svg" alt="OneBI" className="h-8 w-auto" />
+            <img
+              src={asset('Logo/logo.svg')}
+              alt="OneBI"
+              className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -186,17 +227,71 @@ export function Navbar() {
               Blog
             </NavLink>
 
-            <NavLink
-              to="/quem-somos"
-              className={({ isActive }) =>
-                cn(
-                  'text-sm font-medium text-neutral-400 transition-colors hover:text-white',
-                  isActive && 'text-primary-400',
-                )
-              }
+            {/* Institutional Dropdown Menu */}
+            <div
+              className="relative"
+              onMouseEnter={() => setInstitutionalOpen(true)}
+              onMouseLeave={() => setInstitutionalOpen(false)}
             >
-              Quem Somos
-            </NavLink>
+              <button
+                className={cn(
+                  'flex cursor-pointer items-center gap-1 py-2 text-sm font-medium text-neutral-400 transition-colors hover:text-white',
+                  isInstitutionalActive && 'text-primary-400',
+                )}
+              >
+                Institucional
+                <ChevronDown
+                  className={cn(
+                    'h-4 w-4 transition-transform duration-200',
+                    institutionalOpen && 'rotate-180',
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {institutionalOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full right-0 w-[380px] rounded-2xl border border-white/10 bg-neutral-950 p-4 shadow-2xl backdrop-blur-2xl"
+                  >
+                    <div className="grid gap-2">
+                      <p className="px-3 py-1.5 text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+                        A Empresa
+                      </p>
+                      {institutionalLinks.map((link) => (
+                        <Link
+                          key={link.to}
+                          to={link.to}
+                          className="flex items-start gap-4 rounded-xl p-3 transition-colors hover:bg-white/5"
+                        >
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/5 bg-neutral-900">
+                            {link.icon}
+                          </div>
+                          <div>
+                            <p className="hover:text-primary-400 text-sm font-semibold text-white transition-colors">
+                              {link.title}
+                            </p>
+                            <p className="mt-0.5 line-clamp-1 text-xs text-neutral-400">
+                              {link.description}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <Link
+                      to="/contato"
+                      className="text-primary-400 mt-3 flex items-center justify-center gap-1.5 rounded-xl border-t border-white/5 pt-3 text-xs font-semibold transition-colors hover:text-white"
+                    >
+                      Falar com um Consultor{' '}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           {/* Desktop Right Actions */}
@@ -251,7 +346,7 @@ export function Navbar() {
                   className="flex items-center"
                 >
                   <img
-                    src="/Logo/logo.svg"
+                    src={asset('Logo/logo.svg')}
                     alt="OneBI"
                     className="h-7 w-auto"
                   />
@@ -320,21 +415,50 @@ export function Navbar() {
                   Blog
                 </Link>
 
-                <Link
-                  to="/quem-somos"
-                  onClick={() => setIsOpen(false)}
-                  className="text-base font-medium text-neutral-300 hover:text-white"
-                >
-                  Quem Somos
-                </Link>
+                <hr className="border-white/5" />
 
-                <Link
-                  to="/carreira"
-                  onClick={() => setIsOpen(false)}
-                  className="text-base font-medium text-neutral-300 hover:text-white"
-                >
-                  Carreira
-                </Link>
+                {/* Institutional Accordion */}
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={() =>
+                      setMobileInstitutionalOpen(!mobileInstitutionalOpen)
+                    }
+                    className="flex w-full cursor-pointer items-center justify-between text-base font-medium text-neutral-300 hover:text-white"
+                  >
+                    Institucional
+                    <ChevronDown
+                      className={cn(
+                        'h-4 w-4 transition-transform duration-200',
+                        mobileInstitutionalOpen && 'rotate-180',
+                      )}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {mobileInstitutionalOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="grid grid-cols-1 gap-2 pt-2 pl-2">
+                          {institutionalLinks.map((link) => (
+                            <Link
+                              key={link.to}
+                              to={link.to}
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center gap-3 py-1.5 text-sm text-neutral-300 hover:text-white"
+                            >
+                              {link.icon}
+                              {link.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
 
               {/* Pinned CTA footer */}

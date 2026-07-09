@@ -7,6 +7,12 @@ import { Home } from '@/features/home/Home'
 const About = lazy(() =>
   import('@/features/about/About').then((m) => ({ default: m.About })),
 )
+const Mission = lazy(() =>
+  import('@/features/about/Mission').then((m) => ({ default: m.Mission })),
+)
+const Values = lazy(() =>
+  import('@/features/about/Values').then((m) => ({ default: m.Values })),
+)
 const Solutions = lazy(() =>
   import('@/features/solutions/Solutions').then((m) => ({
     default: m.Solutions,
@@ -80,6 +86,14 @@ export const router = createBrowserRouter(
         {
           path: 'quem-somos',
           element: <About />,
+        },
+        {
+          path: 'missao',
+          element: <Mission />,
+        },
+        {
+          path: 'valores',
+          element: <Values />,
         },
         {
           path: 'solucoes',
