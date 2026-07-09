@@ -4,14 +4,14 @@
 
 ### Plataforma institucional para uma empresa de Business Intelligence, Engenharia de Dados e Inteligência Artificial
 
-[![Deploy](https://github.com/Evanillson/onebi-website/actions/workflows/deploy.yml/badge.svg)](https://github.com/Evanillson/onebi-website/actions/workflows/deploy.yml)
+[![Deploy](https://github.com/EvanilsonFreitas/onebi-website/actions/workflows/deploy.yml/badge.svg)](https://github.com/EvanilsonFreitas/onebi-website/actions/workflows/deploy.yml)
 ![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646cff?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?logo=tailwindcss&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-animations-7e57e1?logo=framer&logoColor=white)
 
-[Demo ao vivo](https://evanillson.github.io/onebi-website/) · [Documentação](./docs) · [Reportar um problema](https://github.com/Evanillson/onebi-website/issues)
+[Demo ao vivo](https://evanilsonfreitas.github.io/onebi-website/) · [Documentação](./docs) · [Reportar um problema](https://github.com/EvanilsonFreitas/onebi-website/issues)
 
 </div>
 
@@ -120,7 +120,7 @@ A documentação completa de cada decisão arquitetural está em [`/docs`](./doc
 Pré-requisitos: Node.js 20 ou superior.
 
 ```bash
-git clone https://github.com/Evanillson/onebi-website.git
+git clone https://github.com/EvanilsonFreitas/onebi-website.git
 cd onebi-website
 npm install
 npm run dev
