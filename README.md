@@ -62,7 +62,7 @@ Todo o conteúdo (cases, depoimentos, posts do blog, dados de clientes) é fict�
 
 - **17 rotas públicas**: Home, Quem Somos, 5 páginas de Solução (com conteúdo e ilustração exclusivos cada), Cases (listagem + detalhe com narrativa Problema/Solução/Impacto), Projetos, Tecnologias, Blog (listagem + artigo), Contato (formulário + agendamento simulado), Carreira (banco de talentos), FAQ e páginas legais (Privacidade, Termos, LGPD).
 - **Design system proprietário** sobre a base do shadcn/ui: botões com glow, cards com spotlight que segue o cursor, carrossel infinito (`Marquee`), tabs animadas com indicador deslizante, modais acessíveis.
-- **Ilustrações SVG originais** (astronauta, planeta com anéis, foguete) desenhadas para o tema espacial da marca, sem dependência de bibliotecas de ícones de terceiros para arte de marca.
+- **Ilustrações 3D plugáveis**: o componente `Illustration` carrega os assets do tema espacial da marca a partir de `public/Ilustration/` por convenção de nome de arquivo — basta soltar o PNG/WebP na pasta, sem tocar em código. Enquanto o arquivo não existe, o espaço reservado fica vazio, sem quebrar o layout.
 - **Formulários validados** com React Hook Form + Zod, cobrindo contato, agendamento de reunião e candidatura no banco de talentos.
 - **Camada de serviços** (`src/services`) que abstrai toda a "persistência" de dados simulada — nenhum componente acessa dados diretamente, preparando o projeto para uma futura migração para Supabase sem reescrever a UI.
 - **Menu mobile off-canvas**, filtros de conteúdo com animação de entrada/saída corrigida (bug real de `AnimatePresence` diagnosticado e resolvido durante o desenvolvimento), navegação por teclado e foco visível.

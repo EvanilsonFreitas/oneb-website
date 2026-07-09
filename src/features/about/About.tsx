@@ -17,7 +17,7 @@ import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
 import { fadeIn, staggerContainer } from '@/animations/variants'
 import { teamData } from '@/constants/mockData'
-import { IllustrationPlanet } from '@/components/common/illustrations/SpaceIllustrations'
+import { Illustration } from '@/components/common/Illustration'
 
 export function About() {
   const pillars = [
@@ -89,7 +89,11 @@ export function About() {
       <section className="relative overflow-hidden py-20">
         {/* Decorative planet, half-visible off the top-right edge */}
         <div className="pointer-events-none absolute -top-16 -right-16 h-72 w-72 opacity-70 md:h-96 md:w-96">
-          <IllustrationPlanet className="h-full w-full" />
+          <Illustration
+            name="planet.png"
+            alt="Planeta com anéis"
+            className="h-full w-full object-contain"
+          />
         </div>
 
         <div className="mx-auto max-w-4xl px-6 text-center lg:px-[7.5%]">

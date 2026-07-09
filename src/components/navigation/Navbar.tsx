@@ -76,19 +76,9 @@ export function Navbar() {
           <Link
             to="/"
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-2"
+            className="flex items-center"
           >
-            <div className="border-primary-500/30 relative flex h-9 w-9 items-center justify-center rounded-lg border bg-neutral-900">
-              <span className="text-primary-400 font-sans text-lg font-extrabold">
-                1
-              </span>
-              {/* Pulsing neon point */}
-              <span className="bg-secondary-500 absolute right-1 bottom-1 h-1.5 w-1.5 animate-pulse rounded-full" />
-            </div>
-            <span className="font-sans text-xl font-bold tracking-tight text-white">
-              One
-              <span className="text-primary-500">BI</span>
-            </span>
+            <img src="/Logo/logo.svg" alt="OneBI" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -258,16 +248,13 @@ export function Navbar() {
                 <Link
                   to="/"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2"
+                  className="flex items-center"
                 >
-                  <div className="border-primary-500/30 relative flex h-8 w-8 items-center justify-center rounded-lg border bg-neutral-900">
-                    <span className="text-primary-400 font-sans text-base font-extrabold">
-                      1
-                    </span>
-                  </div>
-                  <span className="font-sans text-lg font-bold tracking-tight text-white">
-                    One<span className="text-primary-500">BI</span>
-                  </span>
+                  <img
+                    src="/Logo/logo.svg"
+                    alt="OneBI"
+                    className="h-7 w-auto"
+                  />
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}

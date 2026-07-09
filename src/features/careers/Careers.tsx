@@ -16,7 +16,7 @@ import { leadService } from '@/services/leadService'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
 import { careersData } from '@/constants/mockData'
-import { IllustrationRocket } from '@/components/common/illustrations/SpaceIllustrations'
+import { Illustration } from '@/components/common/Illustration'
 
 const talentSchema = z.object({
   name: z
@@ -130,7 +130,11 @@ export function Careers() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mx-auto hidden h-72 w-72 lg:block"
             >
-              <IllustrationRocket className="h-full w-full" />
+              <Illustration
+                name="rocket.png"
+                alt="Foguete decolando"
+                className="h-full w-full object-contain"
+              />
             </motion.div>
           </div>
         </div>

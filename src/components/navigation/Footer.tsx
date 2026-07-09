@@ -80,16 +80,8 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo & About Column */}
           <div className="flex flex-col gap-6">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="border-primary-500/30 relative flex h-8 w-8 items-center justify-center rounded border bg-neutral-900">
-                <span className="text-primary-400 font-sans text-base font-extrabold">
-                  1
-                </span>
-              </div>
-              <span className="font-sans text-lg font-bold tracking-tight text-white">
-                One
-                <span className="text-primary-500">BI</span>
-              </span>
+            <Link to="/" className="flex items-center">
+              <img src="/Logo/logo.svg" alt="OneBI" className="h-8 w-auto" />
             </Link>
             <p className="text-sm leading-relaxed text-neutral-400">
               Desenvolvemos inteligência de dados de alta performance,

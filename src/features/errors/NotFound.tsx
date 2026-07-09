@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Home } from 'lucide-react'
 import { GlowButton } from '@/components/common/GlowButton'
-import { IllustrationAstronaut } from '@/components/common/illustrations/SpaceIllustrations'
+import { Illustration } from '@/components/common/Illustration'
 
 export function NotFound() {
   return (
@@ -22,7 +22,11 @@ export function NotFound() {
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             className="mb-2 h-40 w-40"
           >
-            <IllustrationAstronaut className="h-full w-full" />
+            <Illustration
+              name="astronaut.png"
+              alt="Astronauta flutuando"
+              className="h-full w-full object-contain"
+            />
           </motion.div>
 
           <h1 className="text-6xl font-extrabold tracking-tight text-white md:text-8xl">
