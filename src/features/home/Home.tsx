@@ -19,6 +19,7 @@ import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
 import { Marquee } from '@/components/common/Marquee'
 import { CountUp } from '@/components/common/CountUp'
+import { ScrollIndicator } from '@/components/common/ScrollIndicator'
 import { brandLogos } from '@/components/common/BrandLogos'
 import { IllustrationEngineering } from '@/components/common/illustrations/SolutionIllustrations'
 import {
@@ -187,13 +188,17 @@ export function Home() {
                 </GlowButton>
               </Link>
             </motion.div>
+
+            <motion.div variants={fadeIn('up', 0.9)} className="mt-12">
+              <ScrollIndicator />
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* 1.5. CLIENTS STRIP — label on dark bg, full-bleed green logo marquee below */}
       <section className="relative z-10 py-10">
-        <p className="mb-6 text-center text-xs font-semibold tracking-widest text-neutral-500 uppercase">
+        <p className="text-primary-400 mb-6 text-center text-xs font-semibold tracking-wider uppercase">
           Empresas que Confiam na OneBI
         </p>
         <div className="bg-primary-500 py-8">

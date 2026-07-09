@@ -186,3 +186,45 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ---------------------------------- */
+/* Scroll indicator (hero "scroll mouse" affordance) */
+/* ---------------------------------- */
+@keyframes onebi-float-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes onebi-scroll-dot {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+.onebi-float-bob {
+  animation: onebi-float-bob 2s ease-in-out infinite;
+}
+
+.onebi-scroll-dot {
+  animation: onebi-scroll-dot 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onebi-float-bob,
+  .onebi-scroll-dot {
+    animation: none;
+  }
+}
