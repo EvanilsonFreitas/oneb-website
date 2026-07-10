@@ -5,6 +5,8 @@ interface Particle {
   y: number
   vx: number
   vy: number
+  bx: number
+  by: number
   radius: number
   alpha: number
   color: string
@@ -47,6 +49,8 @@ export function CanvasBackground() {
           y: Math.random() * h,
           vx: (Math.random() - 0.5) * 0.35,
           vy: (Math.random() - 0.5) * 0.35,
+          bx: 0,
+          by: 0,
           radius: Math.random() * 1.8 + 0.6,
           alpha: Math.random() * 0.5 + 0.3,
           color: colors[Math.floor(Math.random() * colors.length)],
@@ -63,9 +67,15 @@ export function CanvasBackground() {
 
       // Update and draw particles
       particles.forEach((p) => {
-        // Move
-        p.x += p.vx
-        p.y += p.vy
+        // Move with base velocity and blast offset
+        const bx = p.bx || 0
+        const by = p.by || 0
+        p.x += p.vx + bx
+        p.y += p.vy + by
+
+        // Friction on blast offset
+        p.bx = bx * 0.92
+        p.by = by * 0.92
 
         // Wrap around boundaries
         if (p.x < 0) p.x = w
@@ -148,8 +158,30 @@ export function CanvasBackground() {
       mouseRef.current.active = false
     }
 
+    const handleExplosion = (e: Event) => {
+      const customEvent = e as CustomEvent<{ x: number; y: number }>
+      const { x, y } = customEvent.detail
+
+      // Push all particles away from (x,y)
+      particles.forEach((p) => {
+        const dx = p.x - x
+        const dy = p.y - y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+
+        // Blast radius
+        if (dist < 1200) {
+          const force = Math.pow((1200 - dist) / 1200, 2) // Exponential falloff for punchier center
+          const angle = Math.atan2(dy, dx)
+          // Add massive blast velocity
+          p.bx = (p.bx || 0) + Math.cos(angle) * force * 150
+          p.by = (p.by || 0) + Math.sin(angle) * force * 150
+        }
+      })
+    }
+
     window.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseleave', handleMouseLeave)
+    window.addEventListener('logoExplosion', handleExplosion)
 
     // Init
     resizeCanvas()
@@ -160,6 +192,7 @@ export function CanvasBackground() {
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('logoExplosion', handleExplosion)
       cancelAnimationFrame(animationFrameId)
     }
   }, [])

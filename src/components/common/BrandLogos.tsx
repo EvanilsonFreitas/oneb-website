@@ -9,39 +9,13 @@ import type { SVGProps } from 'react'
 
 type LogoProps = SVGProps<SVGSVGElement>
 
-function LogoLumen(props: LogoProps) {
-  return (
-    <svg
-      viewBox="0 0 150 32"
-      fill="none"
-      role="img"
-      aria-label="Lumen"
-      {...props}
-    >
-      <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M16 8v16M8 16h16" stroke="currentColor" strokeWidth="2.5" />
-      <text
-        x="38"
-        y="22"
-        fill="currentColor"
-        fontFamily="inherit"
-        fontSize="19"
-        fontWeight="700"
-        letterSpacing="-0.5"
-      >
-        Lumen
-      </text>
-    </svg>
-  )
-}
-
-function LogoVertex(props: LogoProps) {
+function LogoIpsum1(props: LogoProps) {
   return (
     <svg
       viewBox="0 0 160 32"
       fill="none"
       role="img"
-      aria-label="Vertex"
+      aria-label="LogoIpsum"
       {...props}
     >
       <path
@@ -60,48 +34,45 @@ function LogoVertex(props: LogoProps) {
         fontWeight="800"
         letterSpacing="-0.5"
       >
-        Vertex
+        logoipsum
       </text>
     </svg>
   )
 }
 
-function LogoNorthpeak(props: LogoProps) {
+function LogoIpsum2(props: LogoProps) {
   return (
     <svg
-      viewBox="0 0 190 32"
+      viewBox="0 0 160 32"
       fill="none"
       role="img"
-      aria-label="Northpeak"
+      aria-label="LogoIpsum"
       {...props}
     >
-      <path
-        d="M4 26L14 8l6 10 4-6 6 14z"
-        fill="currentColor"
-        fillOpacity="0.85"
-      />
+      <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="2.5" />
+      <path d="M16 8v16M8 16h16" stroke="currentColor" strokeWidth="2.5" />
       <text
-        x="40"
+        x="38"
         y="22"
         fill="currentColor"
         fontFamily="inherit"
-        fontSize="18"
-        fontWeight="700"
+        fontSize="19"
+        fontWeight="800"
         letterSpacing="-0.5"
       >
-        Northpeak
+        logoipsum
       </text>
     </svg>
   )
 }
 
-function LogoQuanta(props: LogoProps) {
+function LogoIpsum3(props: LogoProps) {
   return (
     <svg
-      viewBox="0 0 165 32"
+      viewBox="0 0 160 32"
       fill="none"
       role="img"
-      aria-label="Quanta"
+      aria-label="LogoIpsum"
       {...props}
     >
       <rect
@@ -120,22 +91,22 @@ function LogoQuanta(props: LogoProps) {
         fill="currentColor"
         fontFamily="inherit"
         fontSize="19"
-        fontWeight="700"
+        fontWeight="800"
         letterSpacing="-0.5"
       >
-        Quanta
+        logoipsum
       </text>
     </svg>
   )
 }
 
-function LogoAxion(props: LogoProps) {
+function LogoIpsum4(props: LogoProps) {
   return (
     <svg
-      viewBox="0 0 150 32"
+      viewBox="0 0 160 32"
       fill="none"
       role="img"
-      aria-label="Axion"
+      aria-label="LogoIpsum"
       {...props}
     >
       <path
@@ -154,19 +125,19 @@ function LogoAxion(props: LogoProps) {
         fontWeight="800"
         letterSpacing="-0.5"
       >
-        Axion
+        logoipsum
       </text>
     </svg>
   )
 }
 
-function LogoMeridian(props: LogoProps) {
+function LogoIpsum5(props: LogoProps) {
   return (
     <svg
-      viewBox="0 0 185 32"
+      viewBox="0 0 160 32"
       fill="none"
       role="img"
-      aria-label="Meridian"
+      aria-label="LogoIpsum"
       {...props}
     >
       <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="2.4" />
@@ -183,23 +154,23 @@ function LogoMeridian(props: LogoProps) {
         y="22"
         fill="currentColor"
         fontFamily="inherit"
-        fontSize="18"
-        fontWeight="700"
+        fontSize="19"
+        fontWeight="800"
         letterSpacing="-0.5"
       >
-        Meridian
+        logoipsum
       </text>
     </svg>
   )
 }
 
-function LogoStackflow(props: LogoProps) {
+function LogoIpsum6(props: LogoProps) {
   return (
     <svg
-      viewBox="0 0 195 32"
+      viewBox="0 0 160 32"
       fill="none"
       role="img"
-      aria-label="Stackflow"
+      aria-label="LogoIpsum"
       {...props}
     >
       <rect x="5" y="6" width="22" height="5" rx="2.5" fill="currentColor" />
@@ -226,22 +197,51 @@ function LogoStackflow(props: LogoProps) {
         y="22"
         fill="currentColor"
         fontFamily="inherit"
-        fontSize="18"
-        fontWeight="700"
+        fontSize="19"
+        fontWeight="800"
         letterSpacing="-0.5"
       >
-        Stackflow
+        logoipsum
+      </text>
+    </svg>
+  )
+}
+
+function LogoIpsum7(props: LogoProps) {
+  return (
+    <svg
+      viewBox="0 0 160 32"
+      fill="none"
+      role="img"
+      aria-label="LogoIpsum"
+      {...props}
+    >
+      <path
+        d="M4 26L14 8l6 10 4-6 6 14z"
+        fill="currentColor"
+        fillOpacity="0.85"
+      />
+      <text
+        x="40"
+        y="22"
+        fill="currentColor"
+        fontFamily="inherit"
+        fontSize="19"
+        fontWeight="800"
+        letterSpacing="-0.5"
+      >
+        logoipsum
       </text>
     </svg>
   )
 }
 
 export const brandLogos = [
-  LogoLumen,
-  LogoVertex,
-  LogoNorthpeak,
-  LogoQuanta,
-  LogoAxion,
-  LogoMeridian,
-  LogoStackflow,
+  LogoIpsum1,
+  LogoIpsum2,
+  LogoIpsum3,
+  LogoIpsum4,
+  LogoIpsum5,
+  LogoIpsum6,
+  LogoIpsum7,
 ]

@@ -16,8 +16,9 @@ import {
   Heart,
   Briefcase,
 } from 'lucide-react'
-import { cn, asset } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { GlowButton } from '@/components/common/GlowButton'
+import { AnimatedLogo } from '@/components/ui/AnimatedLogo'
 import { solutionsData } from '@/constants/mockData'
 
 // Helper function to map string icon names to Lucide icon components
@@ -115,11 +116,7 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
             className="flex items-center"
           >
-            <img
-              src={asset('Logo/logo.svg')}
-              alt="OneB"
-              className="h-11 w-auto"
-            />
+            <AnimatedLogo />
           </Link>
 
           {/* Desktop Navigation */}
@@ -345,11 +342,7 @@ export function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="flex items-center"
                 >
-                  <img
-                    src={asset('Logo/logo.svg')}
-                    alt="OneB"
-                    className="h-9 w-auto"
-                  />
+                  <AnimatedLogo />
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}

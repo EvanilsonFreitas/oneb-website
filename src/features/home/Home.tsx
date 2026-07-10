@@ -201,7 +201,7 @@ export function Home() {
         <p className="text-primary-400 mb-6 text-center text-xs font-semibold tracking-wider uppercase">
           Empresas que Confiam na OneB
         </p>
-        <div className="bg-primary-500 py-8">
+        <div className="bg-primary-500 py-14">
           <Marquee
             durationSeconds={38}
             itemClassName="gap-16 pr-16"

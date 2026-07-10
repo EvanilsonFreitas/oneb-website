@@ -1,0 +1,233 @@
+/* =========================
+        POSIÇÃO DO LOGO
+========================= */
+
+.animated-logo-container {
+  display: inline-block;
+  width: 236px;
+  height: 60px;
+  position: relative;
+}
+
+.animated-logo-hero {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) scale(0.55);
+  transform-origin: left center;
+  display: flex;
+  align-items: center;
+  width: 430px;
+  height: 110px;
+}
+
+/* =========================
+        LOGO BLACK HOLE
+========================= */
+
+.animated-logo-wrapper {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.animated-logo-circle {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Aura externa */
+.animated-logo-circle::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(62, 240, 170, 0.22) 0%, rgba(62, 240, 170, 0.12) 35%, rgba(62, 240, 170, 0.05) 55%, transparent 75%);
+  filter: blur(25px);
+  opacity: 0.8;
+  animation: animatedLogoAuraBreath 5s ease-in-out infinite;
+}
+
+/* Plasma interno */
+.animated-logo-circle::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 40%, rgba(62, 240, 170, 0.08), transparent 70%);
+  filter: blur(35px);
+  animation: animatedLogoAuraBreath 6s ease-in-out infinite reverse;
+}
+
+/* Buraco negro */
+.animated-logo-blackhole {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: #000;
+  z-index: 10;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03), 0 0 20px rgba(62, 240, 170, 0.15);
+  position: relative;
+}
+
+.animated-logo-blackhole::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(62, 240, 170, 0.18), transparent 65%);
+  filter: blur(12px);
+  animation: animatedLogoAuraBreath 4s ease-in-out infinite;
+}
+
+/* =========================
+        TEXTO DA MARCA
+========================= */
+
+.animated-logo-brand {
+  position: absolute;
+  left: 46px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.animated-logo-brand-name {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.animated-logo-separator {
+  color: #3ef0aa;
+  font-size: 25px;
+  font-weight: 300;
+  animation: animatedLogoBlink 1s infinite;
+}
+
+.animated-logo-typing {
+  display: flex;
+  align-items: center;
+}
+
+#animated-logo-word {
+  color: #3ef0aa;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 8px rgba(62, 240, 170, 0.4);
+  display: inline-block;
+  transition: opacity 0.12s ease;
+}
+
+.animated-logo-cursor {
+  display: inline-block;
+  color: #3ef0aa;
+  visibility: hidden;
+  font-size: 25px;
+  line-height: 1;
+  margin-left: 5px;
+  text-shadow: 0 0 8px #3ef0aa;
+  animation: animatedLogoBlink 1s infinite;
+}
+
+.animated-logo-cursor.animated-logo-dot {
+  font-size: 25px;
+  animation: animatedLogoBlink 1s infinite;
+}
+
+/* =========================
+        PARTICULAS
+========================= */
+
+.animated-logo-particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: #86f5c7;
+  box-shadow: 0 0 6px #3ef0aa, 0 0 14px rgba(62, 240, 170, 0.7);
+  z-index: 5;
+  opacity: 0;
+}
+
+/* =========================
+        ANIMAÇÕES
+========================= */
+
+@keyframes animatedLogoRotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animatedLogoRotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes animatedLogoPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes animatedLogoRing {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes animatedLogoBlink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animatedLogoAuraBreath {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(0.96);
+    opacity: 0.55;
+  }
+}
