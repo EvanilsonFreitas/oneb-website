@@ -4,18 +4,34 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ChevronDown, HelpCircle, Search } from 'lucide-react'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
-import { generalFaqData } from '@/constants/mockData'
+import { generalFaqData, type FaqCategory } from '@/constants/mockData'
+
+const faqCategories: ('Todas' | FaqCategory)[] = [
+  'Todas',
+  'Serviços',
+  'Projetos',
+  'Consultoria',
+  'Tecnologia',
+  'Processo Comercial',
+  'Atendimento',
+]
 
 export function Faq() {
   const [searchTerm, setSearchTerm] = useState('')
+  const [activeCategory, setActiveCategory] = useState<'Todas' | FaqCategory>(
+    'Todas',
+  )
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
-  const filteredFaqs = generalFaqData.filter(
-    (faq) =>
+  const filteredFaqs = generalFaqData.filter((faq) => {
+    const categoryMatches =
+      activeCategory === 'Todas' || faq.category === activeCategory
+    const searchMatches =
       searchTerm.trim() === '' ||
       faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
+    return categoryMatches && searchMatches
+  })
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -57,7 +73,31 @@ export function Faq() {
         </div>
       </section>
 
-      {/* 2. FAQ ACCORDION */}
+      {/* 2. CATEGORY FILTERS */}
+      <section className="pb-8">
+        <div className="mx-auto max-w-4xl px-6 lg:px-[7.5%]">
+          <div className="flex flex-wrap justify-center gap-2">
+            {faqCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActiveCategory(cat)
+                  setOpenIndex(0)
+                }}
+                className={`cursor-pointer rounded-lg border px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
+                  activeCategory === cat
+                    ? 'bg-primary-500 border-primary-500 text-black shadow-md'
+                    : 'border-white/5 bg-white/5 text-neutral-400 hover:border-white/15 hover:text-white'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. FAQ ACCORDION */}
       <section className="pb-12">
         <div className="mx-auto max-w-3xl px-6 lg:px-[7.5%]">
           <div className="flex flex-col gap-4">
@@ -71,9 +111,14 @@ export function Faq() {
                   onClick={() => toggle(idx)}
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <h3 className="text-sm font-bold text-white md:text-base">
-                      {faq.question}
-                    </h3>
+                    <div>
+                      <span className="text-primary-400 text-[10px] font-bold tracking-wider uppercase">
+                        {faq.category}
+                      </span>
+                      <h3 className="mt-1 text-sm font-bold text-white md:text-base">
+                        {faq.question}
+                      </h3>
+                    </div>
                     <ChevronDown
                       className={`h-5 w-5 shrink-0 text-neutral-400 transition-transform duration-300 ${
                         isOpen ? 'text-primary-400 rotate-180' : ''
@@ -115,7 +160,7 @@ export function Faq() {
           </p>
           <div className="mt-8">
             <Link to="/contato">
-              <GlowButton variant="primary" className="px-8 py-3">
+              <GlowButton variant="primary">
                 Falar com um Consultor <ArrowRight className="h-4 w-4" />
               </GlowButton>
             </Link>

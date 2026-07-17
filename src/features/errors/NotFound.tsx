@@ -47,7 +47,7 @@ export function NotFound() {
             <Link to="/" className="w-full sm:w-auto">
               <GlowButton
                 variant="primary"
-                className="w-full px-6 py-2.5 text-xs font-semibold sm:w-auto"
+                className="w-full font-semibold sm:w-auto"
               >
                 <Home className="h-4 w-4" /> Voltar ao Início
               </GlowButton>
@@ -55,7 +55,7 @@ export function NotFound() {
             <Link to="/solucoes" className="w-full sm:w-auto">
               <GlowButton
                 variant="glass"
-                className="w-full px-6 py-2.5 text-xs font-semibold sm:w-auto"
+                className="w-full font-semibold sm:w-auto"
               >
                 <ArrowLeft className="h-4 w-4" /> Ver Soluções
               </GlowButton>

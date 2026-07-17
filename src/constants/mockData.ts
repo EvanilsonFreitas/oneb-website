@@ -26,6 +26,8 @@ export interface Solution {
     | 'IllustrationConsulting'
   /** 'primary' or 'secondary' accent variant for this solution (both render in teal). */
   accent: 'primary' | 'secondary'
+  /** Fotografia real de cenário de aplicação (cards de especialidades). */
+  photo: string
   tagline: string
   description: string
   fullDescription: string
@@ -40,6 +42,12 @@ export interface Solution {
     title: string
     scenario: string
     highlights: string[]
+    /** Demonstração em vídeo exibida no modal "Ver exemplo". */
+    video: {
+      poster: string
+      src: string
+      duration: string
+    }
   }
   faqs: { question: string; answer: string }[]
 }
@@ -52,9 +60,13 @@ export interface CaseStudy {
   category: string
   summary: string
   challenge: string
+  /** Como o problema foi identificado (diagnóstico). */
+  discovery: string
   solution: string
   impact: string
   architecture: string[]
+  /** Prints, dashboards e exemplos práticos exibidos no estudo de caso. */
+  gallery: { src: string; caption: string }[]
   kpis: { label: string; value: string }[]
   beforeAfter: { label: string; before: string; after: string }[]
   quote: { text: string; author: string; role: string }
@@ -98,6 +110,8 @@ export const solutionsData: Solution[] = [
     technologies: ['Power BI', 'SQL Server', 'DAX', 'Power Query', 'SSAS'],
     illustration: 'IllustrationBI',
     accent: 'primary',
+    photo:
+      'https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=900&auto=format&fit=crop',
     tagline: 'Dashboards executivos que a diretoria realmente usa.',
     metrics: [
       { value: '-70%', label: 'Tempo de elaboração de relatórios' },
@@ -160,6 +174,12 @@ export const solutionsData: Solution[] = [
         'Alertas visuais de metas e comparativo YoY automático',
         'Atualização a cada 30 minutos via gateway corporativo',
       ],
+      video: {
+        poster:
+          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+        src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+        duration: '2:40',
+      },
     },
     faqs: [
       {
@@ -197,6 +217,8 @@ export const solutionsData: Solution[] = [
     ],
     illustration: 'IllustrationFabric',
     accent: 'secondary',
+    photo:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=900&auto=format&fit=crop',
     tagline:
       'Toda a sua análise de dados unificada em uma única plataforma SaaS.',
     metrics: [
@@ -260,6 +282,12 @@ export const solutionsData: Solution[] = [
         'Relatórios renderizando em menos de 2 segundos via DirectLake',
         'Redução de 32% nos custos de computação em nuvem',
       ],
+      video: {
+        poster:
+          'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop',
+        src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+        duration: '3:10',
+      },
     },
     faqs: [
       {
@@ -298,6 +326,8 @@ export const solutionsData: Solution[] = [
     ],
     illustration: 'IllustrationEngineering',
     accent: 'primary',
+    photo:
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=900&auto=format&fit=crop',
     tagline:
       'A fundação de dados confiável sobre a qual toda decisão se apoia.',
     metrics: [
@@ -361,6 +391,12 @@ export const solutionsData: Solution[] = [
         'Carga estruturada em SQL Server Data Warehouse',
         'Saídas preditivas publicadas automaticamente no Power BI',
       ],
+      video: {
+        poster:
+          'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
+        src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+        duration: '2:15',
+      },
     },
     faqs: [
       {
@@ -399,6 +435,8 @@ export const solutionsData: Solution[] = [
     ],
     illustration: 'IllustrationAI',
     accent: 'secondary',
+    photo:
+      'https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=900&auto=format&fit=crop',
     tagline: 'Inteligência ativa que prevê, classifica e automatiza decisões.',
     metrics: [
       { value: '94%', label: 'Acurácia média em modelos preditivos' },
@@ -461,6 +499,12 @@ export const solutionsData: Solution[] = [
         'Respeito às permissões RLS do usuário logado',
         'Respostas em segundos, sem vazar dados para modelos públicos',
       ],
+      video: {
+        poster:
+          'https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=1200&auto=format&fit=crop',
+        src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+        duration: '2:55',
+      },
     },
     faqs: [
       {
@@ -499,6 +543,8 @@ export const solutionsData: Solution[] = [
     ],
     illustration: 'IllustrationConsulting',
     accent: 'primary',
+    photo:
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=900&auto=format&fit=crop',
     tagline:
       'A estratégia de dados certa antes de investir na ferramenta errada.',
     metrics: [
@@ -562,6 +608,12 @@ export const solutionsData: Solution[] = [
         'Fluxo de homologação de novos relatórios',
         'Workshops presenciais de capacitação para líderes',
       ],
+      video: {
+        poster:
+          'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
+        src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+        duration: '1:50',
+      },
     },
     faqs: [
       {
@@ -590,6 +642,8 @@ export const casesData: CaseStudy[] = [
       'Construção de uma solução preditiva de demanda e roteirização inteligente, gerando redução de custos na última milha.',
     challenge:
       'A Multivarejo enfrentava custos crescentes de combustível e devoluções devido a previsões manuais e ineficientes de reabastecimento nas lojas físicas do Sudeste. Cada filial calculava sua própria previsão de demanda em planilhas isoladas, sem visibilidade da matriz.',
+    discovery:
+      'Durante o diagnóstico gratuito, cruzamos o custo de frete por rota com o erro de previsão de cada loja e mostramos que 60% dos fretes emergenciais nasciam de previsões com desvio acima de 30%. O problema não era o transporte — era a previsão.',
     solution:
       'Implementamos pipelines de dados usando Python e SQL Server para alimentar um modelo preditivo baseado em séries temporais (LightGBM). Conectamos as saídas a um painel dinâmico do Power BI integrado no centro de distribuição regional.',
     impact:
@@ -599,6 +653,20 @@ export const casesData: CaseStudy[] = [
       'Armazenamento e limpeza de dados estruturados em SQL Server Data Warehouse.',
       'Pipeline em Python para engenharia de features e treinamento do modelo preditivo.',
       'Distribuição dos insights preditivos via painel em Power BI no painel operacional.',
+    ],
+    gallery: [
+      {
+        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Painel operacional de demanda prevista por loja e SKU',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Acompanhamento de acurácia do modelo vs. baseline manual',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Rotas de última milha replanejadas semanalmente com dados',
+      },
     ],
     kpis: [
       { label: 'Redução Custo Logístico', value: '18%' },
@@ -642,6 +710,8 @@ export const casesData: CaseStudy[] = [
       'Centralização de bases legadas e silos de dados em um Lakehouse unificado com Microsoft Fabric DirectLake.',
     challenge:
       'Relatórios de fechamento mensal demoravam mais de 5 dias devido a consultas pesadas em múltiplos bancos relacionais separados e lentidão nos processos clássicos de ETL. O time financeiro só descobria inconsistências no dia do fechamento, sem margem para corrigir.',
+    discovery:
+      'O assessment de arquitetura mapeou 12 bancos isolados e mediu o tempo real de cada etapa do fechamento: 70% dos 5 dias eram espera de cargas noturnas e reconciliação manual entre sistemas — não análise.',
     solution:
       'Desenhamos e executamos a migração para o Microsoft Fabric. Consolidamos os dados no OneLake com formato Delta Parquet. Criamos views analíticas conectadas ao Power BI via DirectLake, permitindo a renderização dos painéis em menos de 2 segundos.',
     impact:
@@ -651,6 +721,20 @@ export const casesData: CaseStudy[] = [
       'Armazenamento único no OneLake em tabelas Delta organizadas na camada Silver/Gold.',
       'Modelagem analítica executada em Synapse Data Warehouse dentro do Fabric.',
       'Acesso aos relatórios pelo Power BI utilizando conexão ultra rápida DirectLake.',
+    ],
+    gallery: [
+      {
+        src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop',
+        caption: 'War room da migração: cutover por domínio de dados',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Monitoramento das camadas Bronze/Silver/Gold no OneLake',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Painel de fechamento renderizando em <2s via DirectLake',
+      },
     ],
     kpis: [
       { label: 'Tempo de Fechamento Mensal', value: '1 dia' },
@@ -690,6 +774,8 @@ export const casesData: CaseStudy[] = [
       'Estruturação de governança de dados, auditoria de relatórios e treinamento em larga escala para capacitação de líderes industriais.',
     challenge:
       'A metalúrgica possuía mais de 200 relatórios não homologados criados individualmente, gerando divergência em métricas de produtividade fundamentais. Cada planta industrial reportava um número diferente para o mesmo indicador de OEE.',
+    discovery:
+      'A auditoria via API de metadados do Power BI revelou 200+ relatórios ativos, 37 definições diferentes de OEE e nenhum dono formal de métrica — evidência apresentada à diretoria em um único painel de governança.',
     solution:
       'Criamos um portal de dados centralizado sob um programa rígido de governança. Desenvolvemos fluxos de aprovação de relatórios, mapeamos a linhagem dos dados de produção e promovemos workshops presenciais de capacitação.',
     impact:
@@ -699,6 +785,20 @@ export const casesData: CaseStudy[] = [
       'Modelagem de dados padronizada em um único Dataset compartilhado no ambiente premium.',
       'Implementação de níveis de acesso RLS (Row-Level Security) baseado na filial fabril.',
       'Criação de manuais e vídeos de treinamento para a equipe de negócios.',
+    ],
+    gallery: [
+      {
+        src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Indicadores de produção padronizados no chão de fábrica',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Workshop de capacitação de líderes multiplicadores',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=1200&auto=format&fit=crop',
+        caption: 'Dataset único certificado com OEE oficial por planta',
+      },
     ],
     kpis: [
       { label: 'Métricas Padronizadas', value: '100%' },
@@ -1012,6 +1112,41 @@ export const technologiesData: Technology[] = [
   },
 ]
 
+export interface ProjectFlowStep {
+  title: string
+  description: string
+}
+
+/**
+ * Documentação técnica e comercial completa de um projeto — alimenta o modal
+ * "Ver detalhes" com resumo, problema, solução, fluxo visual e resultados.
+ */
+export interface ProjectDoc {
+  summary: {
+    client: string
+    area: string
+    objective: string
+  }
+  problem: {
+    scenario: string
+    pain: string
+    impacts: string[]
+    need: string
+  }
+  solution: {
+    strategy: string
+    architecture: string[]
+    process: string[]
+  }
+  /** Etapas do fluxo/arquitetura renderizadas como diagrama visual. */
+  flow: ProjectFlowStep[]
+  results: {
+    goals: string[]
+    kpis: { label: string; value: string }[]
+    gains: string[]
+  }
+}
+
 export interface Project {
   slug: string
   title: string
@@ -1021,6 +1156,7 @@ export interface Project {
   year: string
   status: 'Em produção' | 'Concluído' | 'Em manutenção'
   image: string
+  doc: ProjectDoc
 }
 
 export const projectsData: Project[] = [
@@ -1035,6 +1171,81 @@ export const projectsData: Project[] = [
     status: 'Em produção',
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop',
+    doc: {
+      summary: {
+        client: 'Multivarejo Brasil — rede com 42 lojas no Sudeste',
+        area: 'Diretoria Executiva / Comercial',
+        objective:
+          'Centralizar todos os indicadores executivos em um único portal seguro, eliminando o envio de relatórios por e-mail e planilhas paralelas.',
+      },
+      problem: {
+        scenario:
+          'Cada diretoria recebia relatórios por e-mail em formatos diferentes. Os links de dashboards ficavam espalhados em favoritos e grupos de WhatsApp.',
+        pain: 'Executivos não sabiam qual versão do número era a oficial, e o acesso a dados sensíveis não tinha trilha de auditoria.',
+        impacts: [
+          'Reuniões de diretoria travadas discutindo qual número estava certo',
+          'Dados estratégicos circulando fora do ambiente corporativo',
+          'Horas de analistas gastas exportando e reenviando relatórios',
+        ],
+        need: 'Um ponto único de acesso, com autenticação corporativa, permissões por papel e os mesmos números para todos.',
+      },
+      solution: {
+        strategy:
+          'Construir um portal web leve sobre o Power BI Embedded, delegando autenticação ao Azure AD e mapeando permissões por diretoria — sem duplicar dados, apenas governando o acesso.',
+        architecture: [
+          'SPA em React + TypeScript hospedada em Azure Static Web Apps',
+          'Power BI Embedded com service principal e capacidade dedicada',
+          'Autenticação única (SSO) via Azure AD com grupos por diretoria',
+          'RLS aplicado nos datasets para recorte automático por área',
+        ],
+        process: [
+          'Workshops com cada diretoria para mapear os painéis essenciais',
+          'Prototipação do portal e validação de navegação com usuários-chave',
+          'Integração Embedded + SSO e testes de permissão por papel',
+          'Rollout gradual por diretoria com treinamento de 30 minutos',
+        ],
+      },
+      flow: [
+        {
+          title: 'Login corporativo',
+          description: 'Usuário entra com a conta Azure AD da empresa (SSO).',
+        },
+        {
+          title: 'Autorização por papel',
+          description:
+            'O portal resolve o grupo AD e monta o menu da diretoria.',
+        },
+        {
+          title: 'Embed seguro',
+          description: 'Power BI Embedded renderiza o painel com token curto.',
+        },
+        {
+          title: 'RLS no dataset',
+          description:
+            'O dado é recortado automaticamente para a área do usuário.',
+        },
+        {
+          title: 'Auditoria',
+          description: 'Acessos e exportações registrados para compliance.',
+        },
+      ],
+      results: {
+        goals: [
+          'Extinguir o envio de indicadores por e-mail (meta: 100%)',
+          'Adoção pelos executivos em até 60 dias',
+        ],
+        kpis: [
+          { label: 'Diretorias integradas', value: '6' },
+          { label: 'Usuários ativos mensais', value: '180+' },
+          { label: 'Relatórios por e-mail', value: '0' },
+        ],
+        gains: [
+          'Fonte única de verdade para os números executivos',
+          'Trilha de auditoria completa de quem viu o quê',
+          'Onboarding de novos gestores em minutos, não semanas',
+        ],
+      },
+    },
   },
   {
     slug: 'lakehouse-financeira-alfa',
@@ -1047,6 +1258,79 @@ export const projectsData: Project[] = [
     status: 'Em produção',
     image:
       'https://images.unsplash.com/photo-1516110833967-0b5716ca1387?q=80&w=600&auto=format&fit=crop',
+    doc: {
+      summary: {
+        client: 'Financeira Alfa — serviços financeiros',
+        area: 'Dados / Controladoria',
+        objective:
+          'Unificar 12 bases legadas em um Lakehouse governado no Microsoft Fabric e acelerar o fechamento contábil.',
+      },
+      problem: {
+        scenario:
+          'Doze bancos relacionais isolados, cada um com ETL próprio rodando à noite. O fechamento mensal dependia de consultas pesadas cruzando sistemas.',
+        pain: 'Fechamento levava mais de 5 dias e qualquer inconsistência só aparecia no último momento, sem tempo hábil de correção.',
+        impacts: [
+          'Fechamento contábil de 5+ dias com equipe em regime de plantão',
+          'Custo de nuvem alto com capacidades duplicadas por área',
+          'Compliance validando números sem antecedência',
+        ],
+        need: 'Uma única plataforma de dados com ingestão contínua, camadas governadas e consulta rápida para o BI.',
+      },
+      solution: {
+        strategy:
+          'Migração faseada para o Microsoft Fabric: primeiro a ingestão para o OneLake (Bronze), depois a modelagem Silver/Gold, e por fim a troca do BI para DirectLake — sem big bang.',
+        architecture: [
+          'Ingestão contínua de 12 fontes via Data Factory (Fabric)',
+          'OneLake com camadas medalhão em Delta/Parquet',
+          'Transformações PySpark notebooks versionados no Git',
+          'Modelo semântico DirectLake consumido pelo Power BI',
+        ],
+        process: [
+          'Assessment das fontes e desenho da capacidade Fabric',
+          'Ingestão Bronze com validação de paridade contra os legados',
+          'Modelagem Silver/Gold com testes de qualidade automatizados',
+          'Cutover do BI para DirectLake e desligamento dos ETLs antigos',
+        ],
+      },
+      flow: [
+        {
+          title: '12 fontes legadas',
+          description: 'ERPs, core bancário e planilhas departamentais.',
+        },
+        {
+          title: 'Data Factory',
+          description: 'Pipelines de ingestão contínua com retry e alertas.',
+        },
+        {
+          title: 'OneLake — Bronze',
+          description: 'Dado bruto aterrissa em Delta/Parquet imutável.',
+        },
+        {
+          title: 'Silver / Gold',
+          description: 'PySpark limpa, conforma e modela para análise.',
+        },
+        {
+          title: 'DirectLake + Power BI',
+          description: 'Painéis renderizando em menos de 2 segundos.',
+        },
+      ],
+      results: {
+        goals: [
+          'Fechamento contábil em até 1 dia útil',
+          'Reduzir o custo de nuvem consolidando capacidades',
+        ],
+        kpis: [
+          { label: 'Fechamento mensal', value: '1 dia' },
+          { label: 'Velocidade dos painéis', value: '15x +' },
+          { label: 'Custo de nuvem', value: '-32%' },
+        ],
+        gains: [
+          'Compliance validando números com uma semana de antecedência',
+          'Uma única capacidade compartilhada entre engenharia e BI',
+          'Economia financiou a expansão do time de dados',
+        ],
+      },
+    },
   },
   {
     slug: 'assistente-ia-metalurgica-imperial',
@@ -1059,6 +1343,81 @@ export const projectsData: Project[] = [
     status: 'Em manutenção',
     image:
       'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600&auto=format&fit=crop',
+    doc: {
+      summary: {
+        client: 'Metalúrgica Imperial — indústria de base',
+        area: 'Operações Industriais / PCP',
+        objective:
+          'Permitir que gestores consultem KPIs de produção em linguagem natural, sem depender de relatórios sob demanda.',
+      },
+      problem: {
+        scenario:
+          'Perguntas simples ("qual o OEE da planta 2 ontem?") viravam tickets para o time de BI e levavam dias para serem respondidas.',
+        pain: 'A liderança industrial decidia com dados defasados e o time de BI vivia soterrado por demandas repetitivas.',
+        impacts: [
+          'Fila de tickets de BI com dias de espera',
+          'Decisões de chão de fábrica tomadas sem o número atual',
+          'Analistas sêniores gastando tempo em consultas triviais',
+        ],
+        need: 'Uma interface de consulta imediata, segura e que respeitasse as permissões de cada usuário.',
+      },
+      solution: {
+        strategy:
+          'Assistente RAG privado: converter a pergunta em SQL seguro contra o Data Warehouse, respeitando RLS, com IA generativa hospedada em ambiente corporativo.',
+        architecture: [
+          'Azure OpenAI em rede privada (dados não treinam modelos públicos)',
+          'LangChain convertendo linguagem natural em consultas SQL validadas',
+          'Camada de segurança que herda as permissões RLS do usuário',
+          'Interface de chat integrada ao Teams corporativo',
+        ],
+        process: [
+          'Curadoria do dicionário de dados e métricas oficiais',
+          'Guardrails de SQL (somente leitura, tabelas permitidas)',
+          'Piloto com 20 gestores e ajuste fino dos prompts',
+          'Rollout com monitoramento de qualidade das respostas',
+        ],
+      },
+      flow: [
+        {
+          title: 'Pergunta no chat',
+          description: '"Qual o OEE da planta 2 na última semana?"',
+        },
+        {
+          title: 'LangChain',
+          description: 'Interpreta a intenção e gera SQL parametrizado seguro.',
+        },
+        {
+          title: 'Validação & RLS',
+          description:
+            'Guardrails aprovam a consulta com as permissões do usuário.',
+        },
+        {
+          title: 'Data Warehouse',
+          description:
+            'SQL Server responde sobre os dados oficiais de produção.',
+        },
+        {
+          title: 'Resposta em segundos',
+          description: 'IA redige a resposta com número, contexto e fonte.',
+        },
+      ],
+      results: {
+        goals: [
+          'Responder 80% das consultas rotineiras sem abrir ticket',
+          'Tempo de resposta abaixo de 10 segundos',
+        ],
+        kpis: [
+          { label: 'Tempo médio de resposta', value: '6s' },
+          { label: 'Tickets de BI evitados/mês', value: '300+' },
+          { label: 'Acurácia validada', value: '96%' },
+        ],
+        gains: [
+          'Liderança consultando o número oficial na hora da decisão',
+          'Time de BI liberado para projetos analíticos de valor',
+          'Zero vazamento: dados nunca saem do ambiente privado',
+        ],
+      },
+    },
   },
   {
     slug: 'pipeline-preditivo-logistica',
@@ -1071,6 +1430,79 @@ export const projectsData: Project[] = [
     status: 'Em produção',
     image:
       'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?q=80&w=600&auto=format&fit=crop',
+    doc: {
+      summary: {
+        client: 'Multivarejo Brasil — operação logística',
+        area: 'Supply Chain / Logística',
+        objective:
+          'Prever a demanda por loja e SKU para otimizar reabastecimento e reduzir custo de última milha.',
+      },
+      problem: {
+        scenario:
+          'Cada filial estimava a própria demanda em planilhas isoladas, sem histórico estruturado nem visão da matriz.',
+        pain: 'Excesso de estoque em algumas lojas e ruptura em outras, com frete de emergência corroendo a margem.',
+        impacts: [
+          'Custo crescente de combustível e fretes emergenciais',
+          'Ruptura de estoque nos itens de maior giro',
+          'Planejamento gastando a semana refazendo cálculos manuais',
+        ],
+        need: 'Uma previsão central, automatizada e confiável, atualizada diariamente e conectada à operação.',
+      },
+      solution: {
+        strategy:
+          'Pipeline de ML ponta a ponta: ingestão diária do histórico, feature engineering, treino LightGBM com validação temporal e publicação automática das previsões no painel operacional.',
+        architecture: [
+          'Airflow orquestrando extração diária do ERP',
+          'Feature store em SQL Server Data Warehouse',
+          'Treino LightGBM containerizado em Docker com validação walk-forward',
+          'Previsões publicadas via Power BI no centro de distribuição',
+        ],
+        process: [
+          'Consolidação de 3 anos de histórico de vendas por loja/SKU',
+          'Baseline estatístico vs. modelo — prova de valor com dados reais',
+          'Automação do retraining semanal e monitoramento de drift',
+          'Integração com o fluxo de reabastecimento do CD',
+        ],
+      },
+      flow: [
+        {
+          title: 'ERP corporativo',
+          description: 'Histórico de vendas e estoque extraído toda madrugada.',
+        },
+        {
+          title: 'Airflow',
+          description: 'Orquestra limpeza, features e validações de qualidade.',
+        },
+        {
+          title: 'Modelo LightGBM',
+          description: 'Prevê demanda por loja/SKU com validação temporal.',
+        },
+        {
+          title: 'Monitor de drift',
+          description: 'Alerta e dispara retraining quando o padrão muda.',
+        },
+        {
+          title: 'Painel operacional',
+          description: 'CD decide rotas e volumes com a previsão do dia.',
+        },
+      ],
+      results: {
+        goals: [
+          'Acurácia de previsão acima de 90%',
+          'Reduzir o custo logístico de última milha em 15%',
+        ],
+        kpis: [
+          { label: 'Acurácia de previsão', value: '94.2%' },
+          { label: 'Custo logístico', value: '-18%' },
+          { label: 'Ruptura de estoque', value: '-27%' },
+        ],
+        gains: [
+          'Reabastecimento orientado a dados nas 42 lojas',
+          'Equipe de planejamento focada em exceções, não em cálculos',
+          'Modelo se mantém saudável sozinho via retraining agendado',
+        ],
+      },
+    },
   },
   {
     slug: 'governanca-dados-industria',
@@ -1083,6 +1515,79 @@ export const projectsData: Project[] = [
     status: 'Concluído',
     image:
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
+    doc: {
+      summary: {
+        client: 'Metalúrgica Imperial — indústria de base',
+        area: 'Dados / Governança corporativa',
+        objective:
+          'Dar visibilidade da origem de cada métrica e formalizar o ciclo de homologação de relatórios.',
+      },
+      problem: {
+        scenario:
+          'Mais de 200 relatórios não homologados circulavam na empresa, cada um com sua própria definição de OEE e produtividade.',
+        pain: 'Ninguém confiava nos números: cada planta reportava um valor diferente para o mesmo indicador.',
+        impacts: [
+          'Reuniões industriais disputando qual relatório estava "certo"',
+          'Retrabalho constante recriando métricas já existentes',
+          'Risco regulatório por falta de rastreabilidade dos dados',
+        ],
+        need: 'Um catálogo central com linhagem, dicionário oficial de métricas e fluxo de aprovação de relatórios.',
+      },
+      solution: {
+        strategy:
+          'Auditar todo o parque de relatórios via API de metadados, consolidar em um dataset único homologado e disponibilizar um portal de catálogo com linhagem navegável.',
+        architecture: [
+          'Varredura do tenant Power BI com a API de metadados',
+          'Microsoft Purview mapeando linhagem fonte → relatório',
+          'Dataset único certificado com RLS por filial',
+          'Portal React com dicionário de métricas e fluxo de homologação',
+        ],
+        process: [
+          'Auditoria e classificação dos 200+ relatórios existentes',
+          'Definição oficial de cada métrica com os donos do negócio',
+          'Consolidação em 14 relatórios homologados',
+          'Workshops de capacitação e formação de multiplicadores',
+        ],
+      },
+      flow: [
+        {
+          title: 'Fontes de produção',
+          description: 'ERP industrial e apontamentos de chão de fábrica.',
+        },
+        {
+          title: 'Dataset certificado',
+          description: 'Métricas oficiais, versionadas e com RLS por filial.',
+        },
+        {
+          title: 'Purview',
+          description: 'Linhagem automática de cada campo até a origem.',
+        },
+        {
+          title: 'Portal de catálogo',
+          description: 'Busca de métricas com definição e dono responsável.',
+        },
+        {
+          title: 'Fluxo de homologação',
+          description: 'Novos relatórios só publicam após aprovação formal.',
+        },
+      ],
+      results: {
+        goals: [
+          'Uma única definição auditável por indicador',
+          'Reduzir o parque para menos de 20 relatórios oficiais',
+        ],
+        kpis: [
+          { label: 'Relatórios homologados', value: '14' },
+          { label: 'Métricas padronizadas', value: '100%' },
+          { label: 'Usuários ativos mensais', value: '450+' },
+        ],
+        gains: [
+          'Diretoria confiando em um único número de OEE por planta',
+          'Multiplicadores internos reduzindo dependência de consultoria',
+          'Rastreabilidade completa para auditorias',
+        ],
+      },
+    },
   },
   {
     slug: 'site-institucional-oneb',
@@ -1095,6 +1600,79 @@ export const projectsData: Project[] = [
     status: 'Em produção',
     image:
       'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop',
+    doc: {
+      summary: {
+        client: 'OneB — projeto interno',
+        area: 'Marketing / Geração de demanda',
+        objective:
+          'Transformar o site institucional em uma plataforma comercial de geração de leads qualificados.',
+      },
+      problem: {
+        scenario:
+          'O site anterior era um cartão de visitas estático: apresentava a empresa, mas não convertia visitantes em oportunidades.',
+        pain: 'Tráfego qualificado chegava, navegava e ia embora sem deixar contato nem agendar conversa.',
+        impacts: [
+          'Zero leads rastreáveis vindos do canal digital',
+          'Cases e projetos sem profundidade comercial',
+          'Percepção de marca abaixo do nível técnico real da empresa',
+        ],
+        need: 'Uma plataforma premium com design system consistente, provas sociais fortes e funil de agendamento integrado.',
+      },
+      solution: {
+        strategy:
+          'Reconstruir o site como produto: design system único, animações consistentes, documentação comercial de projetos e um funil de captação com agendamento de diagnóstico.',
+        architecture: [
+          'SPA React 19 + TypeScript com Vite e Tailwind CSS 4',
+          'Design system proprietário (botão único, reveals, parallax)',
+          'Canvas de partículas com física gravitacional no logo',
+          'Camada de leads pronta para Supabase (contato, agendamento, histórico)',
+        ],
+        process: [
+          'Auditoria de UX e benchmark de sites SaaS premium',
+          'Construção do design system e migração dos componentes',
+          'Documentação comercial de cases e projetos',
+          'Instrumentação do funil de leads e agendamento',
+        ],
+      },
+      flow: [
+        {
+          title: 'Visitante',
+          description: 'Chega por tráfego orgânico, social ou indicação.',
+        },
+        {
+          title: 'Prova de valor',
+          description: 'Cases, projetos documentados e feedbacks reais.',
+        },
+        {
+          title: 'CTA de diagnóstico',
+          description: 'Formulário fixo de reunião diagnóstica gratuita.',
+        },
+        {
+          title: 'Lead registrado',
+          description: 'Nome, empresa, interesse e histórico armazenados.',
+        },
+        {
+          title: 'Reunião agendada',
+          description: 'Confirmação com data, horário e link da reunião.',
+        },
+      ],
+      results: {
+        goals: [
+          'Converter visitantes em reuniões diagnósticas',
+          'Elevar a percepção de marca ao padrão SaaS premium',
+        ],
+        kpis: [
+          { label: 'Lighthouse Performance', value: '95+' },
+          { label: 'Componentes reutilizáveis', value: '30+' },
+          { label: 'Páginas com animação padrão', value: '100%' },
+        ],
+        gains: [
+          'Funil digital mensurável de ponta a ponta',
+          'Base de leads estruturada com histórico de contato',
+          'Site que vende a metodologia, não só apresenta a empresa',
+        ],
+      },
+    },
   },
 ]
 
@@ -1104,6 +1682,10 @@ export interface Testimonial {
   company: string
   quote: string
   avatar: string
+  /** Avaliação de 1 a 5 estrelas. */
+  rating: number
+  /** Resultado objetivo destacado no card de feedback. */
+  result: string
 }
 
 export const testimonialsData: Testimonial[] = [
@@ -1115,6 +1697,8 @@ export const testimonialsData: Testimonial[] = [
       'A OneB reduziu nosso custo logístico em quase 20% em menos de um trimestre. Mais que um fornecedor de relatórios, ganhamos um parceiro que entende a operação de varejo.',
     avatar:
       'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop',
+    rating: 5,
+    result: '-18% custo logístico',
   },
   {
     name: 'Marcelo Andrade',
@@ -1124,6 +1708,8 @@ export const testimonialsData: Testimonial[] = [
       'Fechávamos o mês em 5 dias. Depois da migração para o Microsoft Fabric conduzida pela OneB, fechamos em 1 dia útil, com muito mais confiança nos números.',
     avatar:
       'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop',
+    rating: 5,
+    result: 'Fechamento 5x mais rápido',
   },
   {
     name: 'Patrícia Lemos',
@@ -1133,6 +1719,8 @@ export const testimonialsData: Testimonial[] = [
       'Tínhamos mais de 200 relatórios não homologados circulando na empresa. A OneB trouxe ordem, governança e uma cultura de self-service BI que se sustenta até hoje.',
     avatar:
       'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=150&auto=format&fit=crop',
+    rating: 5,
+    result: '100% métricas padronizadas',
   },
 ]
 
@@ -1238,9 +1826,18 @@ export const careersData: CareerPosition[] = [
   },
 ]
 
+export type FaqCategory =
+  | 'Serviços'
+  | 'Projetos'
+  | 'Consultoria'
+  | 'Tecnologia'
+  | 'Processo Comercial'
+  | 'Atendimento'
+
 export interface FaqItem {
   question: string
   answer: string
+  category: FaqCategory
 }
 
 export const generalFaqData: FaqItem[] = [
@@ -1248,30 +1845,209 @@ export const generalFaqData: FaqItem[] = [
     question: 'Como funciona o processo de diagnóstico inicial?',
     answer:
       'Começamos com uma reunião técnica gratuita de 30 minutos para entender seus desafios de dados. A partir daí, elaboramos uma proposta técnica e comercial detalhada, sem custo e sem compromisso.',
+    category: 'Processo Comercial',
   },
   {
     question: 'A OneB atende empresas de qualquer porte?',
     answer:
       'Atendemos principalmente médias e grandes empresas com operações de dados já estruturadas, mas também apoiamos empresas em estágio de maturidade analítica inicial que buscam construir uma base sólida desde o começo.',
+    category: 'Atendimento',
   },
   {
     question: 'Como funciona o modelo de contratação dos projetos?',
     answer:
       'Trabalhamos com projetos de escopo fechado (com entregas e prazos definidos) ou squads dedicados em regime de célula contínua, dependendo da maturidade e da necessidade do cliente.',
+    category: 'Processo Comercial',
   },
   {
     question: 'Vocês assinam acordo de confidencialidade (NDA)?',
     answer:
       'Sim. Assinamos NDA antes de qualquer análise de dados ou infraestrutura do cliente. Sigilo e segurança da informação são inegociáveis em todos os nossos contratos.',
+    category: 'Processo Comercial',
   },
   {
     question: 'É possível contratar apenas uma consultoria pontual?',
     answer:
       'Sim. Além de projetos completos, oferecemos consultorias pontuais de diagnóstico, mentoria técnica e auditoria de arquitetura de dados para times internos.',
+    category: 'Consultoria',
   },
   {
     question: 'Como funciona o suporte após a entrega do projeto?',
     answer:
       'Todo projeto inclui um período de garantia técnica. Após esse período, oferecemos planos de sustentação mensal com SLA definido para monitoramento, ajustes e evolução contínua.',
+    category: 'Atendimento',
+  },
+  {
+    question: 'Quais serviços a OneB oferece além de BI?',
+    answer:
+      'Atuamos em toda a cadeia de dados: engenharia de dados e Data Warehouse, Microsoft Fabric, inteligência artificial aplicada, desenvolvimento web de portais e sistemas, além de consultoria especializada em dados, contábil e financeira.',
+    category: 'Serviços',
+  },
+  {
+    question: 'Vocês desenvolvem soluções com o ecossistema Microsoft 365?',
+    answer:
+      'Sim. Construímos soluções completas com Excel, Power Query, Power Pivot, Power BI, Power Automate, Power Apps, SharePoint e Microsoft Fabric — do automação de planilhas a plataformas analíticas corporativas.',
+    category: 'Serviços',
+  },
+  {
+    question: 'Quanto tempo leva um projeto típico de dados?',
+    answer:
+      'Projetos de dashboards executivos ficam entre 4 e 8 semanas. Migrações de plataforma (ex: Microsoft Fabric) e projetos de IA variam de 3 a 6 meses, sempre com entregas parciais quinzenais para gerar valor desde o início.',
+    category: 'Projetos',
+  },
+  {
+    question: 'Como acompanho o andamento do meu projeto?',
+    answer:
+      'Cada projeto tem um canal dedicado, reuniões quinzenais de checkpoint e um painel de status com marcos, entregas e riscos — você acompanha o progresso com a mesma transparência que aplicamos aos dados.',
+    category: 'Projetos',
+  },
+  {
+    question: 'O que inclui a consultoria especializada em dados?',
+    answer:
+      'Diagnóstico de maturidade analítica, desenho de arquitetura, roadmap priorizado e mentoria dos times internos. Também há frentes específicas para as áreas contábil e financeira, com automação de processos e indicadores.',
+    category: 'Consultoria',
+  },
+  {
+    question: 'Quais tecnologias vocês dominam?',
+    answer:
+      'Ecossistema Microsoft (Power BI, Fabric, SQL Server, Azure), Python e Spark para engenharia e ciência de dados, LangChain e Azure OpenAI para IA generativa, e React/TypeScript para portais e aplicações web.',
+    category: 'Tecnologia',
+  },
+  {
+    question: 'Meus dados ficam seguros durante o projeto?',
+    answer:
+      'Sim. Trabalhamos dentro do seu ambiente corporativo, com criptografia em trânsito e repouso, mascaramento de dados sensíveis, RBAC e conformidade com a LGPD. Nenhum dado é usado para treinar modelos públicos de IA.',
+    category: 'Tecnologia',
+  },
+  {
+    question: 'Como funciona a proposta comercial e o orçamento?',
+    answer:
+      'Após a reunião diagnóstica gratuita, entregamos em até 5 dias úteis uma proposta com escopo, cronograma, investimento e resultados esperados — sem custo e sem compromisso.',
+    category: 'Processo Comercial',
+  },
+  {
+    question: 'Qual o canal de atendimento durante e após o projeto?',
+    answer:
+      'Você tem um gerente de conta dedicado, canal direto via Teams/WhatsApp corporativo e SLA de resposta definido em contrato para incidentes de sustentação.',
+    category: 'Atendimento',
+  },
+]
+
+export interface Microsoft365Tool {
+  name: string
+  description: string
+  /** Aplicação prática entregue com a ferramenta. */
+  application: string
+  /** Resultado típico obtido em projetos reais. */
+  result: string
+}
+
+export const microsoft365Data: Microsoft365Tool[] = [
+  {
+    name: 'Excel',
+    description: 'Modelos analíticos avançados e automação de planilhas.',
+    application:
+      'Planilhas corporativas com fórmulas dinâmicas, dados conectados e camadas de validação.',
+    result: 'Horas de retrabalho manual eliminadas por semana',
+  },
+  {
+    name: 'Power Query',
+    description: 'ETL self-service para limpeza e integração de dados.',
+    application:
+      'Consultas reutilizáveis que unificam ERPs, arquivos e APIs sem código complexo.',
+    result: 'Atualização de bases em minutos, não dias',
+  },
+  {
+    name: 'Power Pivot',
+    description: 'Modelagem de dados e cálculos DAX dentro do Excel.',
+    application:
+      'Modelos dimensionais com milhões de linhas e KPIs calculados no próprio Excel.',
+    result: 'Análises de grande volume sem sair do Excel',
+  },
+  {
+    name: 'Power BI',
+    description: 'Dashboards executivos interativos de alta performance.',
+    application:
+      'Painéis com modelagem Star Schema, RLS e distribuição governada por área.',
+    result: '-70% no tempo de elaboração de relatórios',
+  },
+  {
+    name: 'Power Automate',
+    description: 'Automação de fluxos e processos de negócio.',
+    application:
+      'Aprovações, alertas e integrações automáticas entre sistemas e e-mail/Teams.',
+    result: 'Processos aprovados em horas, não semanas',
+  },
+  {
+    name: 'Power Apps',
+    description: 'Aplicativos corporativos low-code sob medida.',
+    application:
+      'Apps de coleta e apontamento integrados ao Dataverse e SharePoint.',
+    result: 'Fim das planilhas paralelas de apontamento',
+  },
+  {
+    name: 'SharePoint',
+    description: 'Portais e gestão documental corporativa.',
+    application:
+      'Intranets, bibliotecas com versionamento e fluxos de aprovação de documentos.',
+    result: 'Documentos certos, na versão certa, para todos',
+  },
+  {
+    name: 'Microsoft Fabric',
+    description: 'Plataforma analítica unificada SaaS da Microsoft.',
+    application:
+      'Lakehouse OneLake, pipelines Data Factory e BI DirectLake em uma única capacidade.',
+    result: 'Painéis 15x mais rápidos com -32% de custo',
+  },
+]
+
+export interface ConsultingCategory {
+  title: string
+  icon: string
+  description: string
+  items: string[]
+}
+
+export const consultingData: ConsultingCategory[] = [
+  {
+    title: 'Dados',
+    icon: 'Database',
+    description:
+      'Da estratégia à operação: estruturamos a inteligência analítica da sua empresa.',
+    items: [
+      'Business Intelligence',
+      'Analytics',
+      'Engenharia de dados',
+      'Indicadores e KPIs',
+    ],
+  },
+  {
+    title: 'Contábil',
+    icon: 'Calculator',
+    description:
+      'Automação e análise para uma contabilidade rápida, auditável e sem retrabalho.',
+    items: [
+      'Automação de rotinas contábeis',
+      'Redesenho de processos',
+      'Análises e conciliações',
+    ],
+  },
+  {
+    title: 'Financeiro',
+    icon: 'Wallet',
+    description:
+      'Visibilidade e previsibilidade para decisões financeiras seguras.',
+    items: [
+      'Planejamento financeiro',
+      'Indicadores financeiros',
+      'Gestão de resultados',
+    ],
+  },
+  {
+    title: 'Desenvolvimento Web',
+    icon: 'Code2',
+    description:
+      'Sistemas e portais sob medida, integrados ao seu ecossistema de dados.',
+    items: ['Sistemas personalizados', 'Aplicações web', 'Integrações e APIs'],
   },
 ]

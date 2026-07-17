@@ -15,6 +15,9 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
+import { CountUp } from '@/components/common/CountUp'
+import { VideoPlayer } from '@/components/common/VideoPlayer'
+import { Reveal, RevealItem } from '@/animations/Reveal'
 import { fadeIn, staggerContainer } from '@/animations/variants'
 import { teamData } from '@/constants/mockData'
 import { Illustration } from '@/components/common/Illustration'
@@ -116,8 +119,8 @@ export function About() {
               variants={fadeIn('up', 0.6)}
               className="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl"
             >
-              Não Vendemos Relatórios.{' '}
-              <span className="text-secondary-500">Vendemos Decisões.</span>
+              <span className="text-secondary-500">Vendemos Decisões.</span> Não
+              Vendemos Relatórios.
             </motion.h1>
             <motion.p
               variants={fadeIn('up', 0.7)}
@@ -141,7 +144,7 @@ export function About() {
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="flex h-full"
               >
@@ -173,6 +176,76 @@ export function About() {
         </div>
       </section>
 
+      {/* 2.5. STORYTELLING — Nossa História */}
+      <section className="border-t border-white/5 py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-[7.5%]">
+          <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
+            <Reveal direction="right">
+              <h2 className="text-primary-400 mb-3 text-xs font-semibold tracking-wider uppercase">
+                Nossa História
+              </h2>
+              <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+                Nascemos dentro do problema que resolvemos
+              </h3>
+              <div className="mt-6 flex flex-col gap-4 text-sm leading-relaxed text-neutral-400 md:text-base">
+                <p>
+                  A OneB começou onde a maioria das decisões ruins começa: em
+                  uma reunião de diretoria com três versões diferentes do mesmo
+                  número. Nossos fundadores — engenheiros de dados e consultores
+                  seniores — viviam esse cenário dentro de grandes operações e
+                  decidiram atacá-lo de frente.
+                </p>
+                <p>
+                  De projetos de SQL Server e Power BI para poucos clientes,
+                  crescemos para um ecossistema completo: engenharia de dados em
+                  nuvem, Microsoft Fabric, inteligência artificial aplicada e
+                  consultoria que fala a língua do negócio.
+                </p>
+                <p>
+                  Hoje, cada projeto carrega a mesma obsessão do primeiro dia:{' '}
+                  <span className="font-semibold text-white">
+                    um único número confiável, na mão de quem decide, na hora da
+                    decisão.
+                  </span>
+                </p>
+              </div>
+
+              {/* Indicadores institucionais */}
+              <div className="mt-10 grid grid-cols-3 gap-4">
+                {[
+                  { v: '50+', l: 'Clientes corporativos' },
+                  { v: '120+', l: 'Projetos entregues' },
+                  { v: '3', l: 'Frentes de especialidade' },
+                ].map((s) => (
+                  <div
+                    key={s.l}
+                    className="rounded-xl border border-white/8 bg-black/40 p-4 text-center"
+                  >
+                    <p className="text-primary-400 text-2xl font-extrabold">
+                      <CountUp value={s.v} />
+                    </p>
+                    <p className="mt-1 text-[10px] text-neutral-500">{s.l}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal direction="left">
+              {/* Vídeo institucional */}
+              <VideoPlayer
+                src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                poster="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop"
+                title="OneB — Quem somos"
+                duration="1:30"
+              />
+              <p className="mt-4 text-center text-xs text-neutral-500">
+                Conheça em 90 segundos como transformamos dados em decisões.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* 3. VERTICAL TIMELINE */}
       <section className="border-t border-white/5 bg-neutral-950/20 py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-[7.5%]">
@@ -191,7 +264,7 @@ export function About() {
                 key={idx}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="relative"
               >
@@ -249,7 +322,7 @@ export function About() {
                 key={item.step}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="flex h-full"
               >
@@ -273,6 +346,74 @@ export function About() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 3.8. CULTURA */}
+      <section className="border-t border-white/5 bg-neutral-950/20 py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-[7.5%]">
+          <Reveal className="mx-auto mb-16 max-w-3xl text-center">
+            <h2 className="text-primary-400 mb-3 text-xs font-semibold tracking-wider uppercase">
+              Nossa Cultura
+            </h2>
+            <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+              Como É Trabalhar com a OneB
+            </h3>
+            <p className="mt-4 text-neutral-400">
+              Cultura de dados não é discurso — é rotina. Estes são os hábitos
+              que sustentam cada entrega.
+            </p>
+          </Reveal>
+
+          <Reveal
+            stagger={0.1}
+            className="grid grid-cols-1 gap-6 md:grid-cols-3"
+          >
+            {[
+              {
+                photo:
+                  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=900&auto=format&fit=crop',
+                title: 'Proximidade real',
+                desc: 'Trabalhamos lado a lado com o time do cliente — sem caixas-pretas, com transferência de conhecimento em cada sprint.',
+              },
+              {
+                photo:
+                  'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=900&auto=format&fit=crop',
+                title: 'Decisão por evidência',
+                desc: 'Toda recomendação nasce de um número medido, não de opinião. Aplicamos em nós o que vendemos.',
+              },
+              {
+                photo:
+                  'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=900&auto=format&fit=crop',
+                title: 'Aprendizado contínuo',
+                desc: 'Guildas técnicas semanais, certificações patrocinadas e mentoria interna entre sêniores e plenos.',
+              },
+            ].map((culture) => (
+              <RevealItem key={culture.title} className="flex h-full">
+                <GlassCard
+                  className="flex h-full flex-col overflow-hidden p-0"
+                  glowColor="rgba(62, 240, 170, 0.1)"
+                >
+                  <div className="h-44 w-full overflow-hidden border-b border-white/5">
+                    <img
+                      src={culture.photo}
+                      alt={culture.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover opacity-70 transition-transform duration-700 hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="mb-2 text-base font-bold text-white">
+                      {culture.title}
+                    </h4>
+                    <p className="text-sm leading-relaxed text-neutral-400">
+                      {culture.desc}
+                    </p>
+                  </div>
+                </GlassCard>
+              </RevealItem>
+            ))}
+          </Reveal>
         </div>
       </section>
 
@@ -369,7 +510,7 @@ export function About() {
                 key={member.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <GlassCard
@@ -400,7 +541,7 @@ export function About() {
               Quer fazer parte do nosso time?
             </p>
             <Link to="/carreira">
-              <GlowButton variant="outline" className="px-6 py-2.5">
+              <GlowButton variant="outline">
                 Ver Vagas Abertas <ArrowRight className="h-4 w-4" />
               </GlowButton>
             </Link>
@@ -414,7 +555,7 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.7 }}
           >
             <GlassCard
@@ -430,18 +571,12 @@ export function About() {
               </p>
               <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
                 <Link to="/contato">
-                  <GlowButton
-                    variant="secondary"
-                    className="w-full px-8 py-3.5 text-base sm:w-auto"
-                  >
+                  <GlowButton variant="secondary" className="w-full sm:w-auto">
                     Falar com um Consultor <ArrowRight className="h-4 w-4" />
                   </GlowButton>
                 </Link>
                 <Link to="/solucoes">
-                  <GlowButton
-                    variant="glass"
-                    className="w-full px-8 py-3.5 text-base sm:w-auto"
-                  >
+                  <GlowButton variant="glass" className="w-full sm:w-auto">
                     Ver Nossas Soluções
                   </GlowButton>
                 </Link>

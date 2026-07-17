@@ -17,10 +17,12 @@ import {
 import { blogService } from '@/services/blogService'
 import { solutionsData, type Solution } from '@/constants/mockData'
 import { GlassCard } from '@/components/common/GlassCard'
+import { CountUp } from '@/components/common/CountUp'
 import { GlowButton } from '@/components/common/GlowButton'
 import { Tabs, type TabItem } from '@/components/common/Tabs'
 import { Breadcrumb } from '@/components/navigation/Breadcrumb'
 import { Modal } from '@/components/feedback/Modal'
+import { VideoPlayer } from '@/components/common/VideoPlayer'
 import { DetailSkeleton } from '@/components/feedback/Skeleton'
 import { solutionIllustrations } from '@/components/common/illustrations/SolutionIllustrations'
 
@@ -41,7 +43,7 @@ const accentStyles = {
     border: 'border-secondary-500/20',
     dot: 'bg-secondary-500',
     tab: 'bg-secondary-500',
-    tabText: 'text-white',
+    tabText: 'text-black',
     glow: 'rgba(62, 240, 170, 0.18)',
     check: 'bg-secondary-500/10 text-secondary-400',
   },
@@ -307,14 +309,13 @@ export function SolutionDetail() {
                     variant={
                       solution.accent === 'primary' ? 'primary' : 'secondary'
                     }
-                    className="px-6 py-3"
                   >
                     Solicitar Orçamento <ArrowRight className="h-4 w-4" />
                   </GlowButton>
                 </Link>
                 <GlowButton
                   variant="glass"
-                  className="px-6 py-3"
+
                   onClick={() => setExampleOpen(true)}
                 >
                   <PlayCircle className="h-4 w-4" /> Ver Exemplo
@@ -340,14 +341,14 @@ export function SolutionDetail() {
                 key={idx}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className="rounded-2xl border border-white/8 bg-neutral-950/40 p-6 text-center"
               >
                 <p
                   className={`text-3xl font-extrabold tracking-tight ${accent.text}`}
                 >
-                  {metric.value}
+                  <CountUp value={metric.value} />
                 </p>
                 <p className="mt-2 text-xs text-neutral-400">{metric.label}</p>
               </motion.div>
@@ -390,7 +391,6 @@ export function SolutionDetail() {
                         solution.accent === 'primary' ? 'primary' : 'secondary'
                       }
                       fullWidth
-                      className="py-3"
                     >
                       Falar com Especialista <ArrowRight className="h-4 w-4" />
                     </GlowButton>
@@ -441,7 +441,16 @@ export function SolutionDetail() {
         onClose={() => setExampleOpen(false)}
         eyebrow="Exemplo real"
         title={solution.example.title}
+        className="max-w-3xl"
       >
+        {/* Demonstração em vídeo da solução */}
+        <VideoPlayer
+          src={solution.example.video.src}
+          poster={solution.example.video.poster}
+          title={solution.example.title}
+          duration={solution.example.video.duration}
+          className="mb-6"
+        />
         <p className="text-sm leading-relaxed text-neutral-300">
           {solution.example.scenario}
         </p>
@@ -467,7 +476,6 @@ export function SolutionDetail() {
             <GlowButton
               variant={solution.accent === 'primary' ? 'primary' : 'secondary'}
               fullWidth
-              className="py-3"
             >
               Quero um resultado assim <ArrowRight className="h-4 w-4" />
             </GlowButton>

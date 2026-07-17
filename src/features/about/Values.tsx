@@ -129,7 +129,7 @@ export function Values() {
                 key={value.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
+                viewport={{ once: false, margin: '-80px' }}
                 transition={{ duration: 0.5, delay: (idx % 3) * 0.08 }}
               >
                 <GlassCard
@@ -171,14 +171,12 @@ export function Values() {
           </p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Link to="/cases">
-              <GlowButton variant="primary" className="px-8 py-3">
+              <GlowButton variant="primary">
                 Ver Cases de Sucesso <ArrowRight className="h-4 w-4" />
               </GlowButton>
             </Link>
             <Link to="/missao">
-              <GlowButton variant="glass" className="px-8 py-3">
-                Conhecer Nossa Missão
-              </GlowButton>
+              <GlowButton variant="glass">Conhecer Nossa Missão</GlowButton>
             </Link>
           </div>
         </div>

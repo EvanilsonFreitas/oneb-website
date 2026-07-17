@@ -6,6 +6,8 @@ import { blogService } from '@/services/blogService'
 import type { CaseStudy } from '@/constants/mockData'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
+import { CountUp } from '@/components/common/CountUp'
+import { Reveal } from '@/animations/Reveal'
 import { DetailSkeleton } from '@/components/feedback/Skeleton'
 import { Breadcrumb } from '@/components/navigation/Breadcrumb'
 
@@ -114,12 +116,12 @@ export function CaseDetail() {
               key={kpi.label}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
+              viewport={{ once: false, margin: '-60px' }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="text-center sm:text-left"
             >
               <p className="text-primary-400 text-4xl font-extrabold tracking-tight md:text-5xl">
-                {kpi.value}
+                <CountUp value={kpi.value} />
               </p>
               <p className="mt-2 text-xs tracking-wide text-neutral-400 uppercase">
                 {kpi.label}
@@ -136,29 +138,37 @@ export function CaseDetail() {
             <div className="flex flex-col gap-16 lg:col-span-8">
               <NarrativeStage
                 index="01"
-                title="O Problema"
+                title="Qual era o problema?"
                 accent="text-primary-400"
                 text={caseStudy.challenge}
               />
               <NarrativeStage
                 index="02"
-                title="A Solução"
-                accent="text-secondary-400"
-                text={caseStudy.solution}
+                title="Como foi identificado?"
+                accent="text-primary-400"
+                text={caseStudy.discovery}
               />
               <NarrativeStage
                 index="03"
-                title="O Impacto"
+                title="Qual solução foi criada?"
                 accent="text-primary-400"
-                text={caseStudy.impact}
+                text={caseStudy.solution}
               />
 
-              {/* Architecture workflow */}
+              {/* Architecture workflow — como foi implementada */}
               <div className="border-t border-white/10 pt-12">
-                <h3 className="mb-8 flex items-center gap-2 text-xs font-bold tracking-widest text-neutral-400 uppercase">
+                <div className="flex items-baseline gap-4">
+                  <span className="text-primary-400 font-mono text-4xl font-extrabold opacity-40">
+                    04
+                  </span>
+                  <h3 className="text-xl font-extrabold tracking-tight text-white md:text-2xl">
+                    Como foi implementada?
+                  </h3>
+                </div>
+                <h4 className="mt-6 mb-8 flex items-center gap-2 text-xs font-bold tracking-widest text-neutral-400 uppercase">
                   <Cpu className="h-4 w-4 text-neutral-500" />
-                  Como a arquitetura foi construída
-                </h3>
+                  Arquitetura da solução
+                </h4>
                 <div className="relative ml-3 flex flex-col gap-8 border-l border-white/10 pl-6">
                   {caseStudy.architecture.map((step, idx) => (
                     <div key={idx} className="relative">
@@ -171,6 +181,47 @@ export function CaseDetail() {
                         {step}
                       </p>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+              <NarrativeStage
+                index="05"
+                title="Qual resultado gerou?"
+                accent="text-primary-400"
+                text={caseStudy.impact}
+              />
+
+              {/* Galeria visual — prints, dashboards e exemplos práticos */}
+              <div className="border-t border-white/10 pt-12">
+                <h3 className="mb-8 flex items-center gap-2 text-xs font-bold tracking-widest text-neutral-400 uppercase">
+                  <Cpu className="h-4 w-4 text-neutral-500" />O projeto na
+                  prática
+                </h3>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                  {caseStudy.gallery.map((shot, idx) => (
+                    <Reveal
+                      key={shot.src}
+                      direction="up"
+                      delay={idx * 0.08}
+                      className={idx === 0 ? 'sm:col-span-2' : ''}
+                    >
+                      <figure className="group overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/40">
+                        <div
+                          className={`overflow-hidden ${idx === 0 ? 'h-64 md:h-80' : 'h-48'}`}
+                        >
+                          <img
+                            src={shot.src}
+                            alt={shot.caption}
+                            loading="lazy"
+                            className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                          />
+                        </div>
+                        <figcaption className="border-t border-white/5 px-4 py-3 text-xs text-neutral-400">
+                          {shot.caption}
+                        </figcaption>
+                      </figure>
+                    </Reveal>
                   ))}
                 </div>
               </div>
@@ -234,7 +285,7 @@ export function CaseDetail() {
                 key={row.label}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
+                viewport={{ once: false, margin: '-60px' }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className="grid grid-cols-1 items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:grid-cols-[1fr_auto_1fr] sm:gap-6"
               >
@@ -276,7 +327,7 @@ function NarrativeStage({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: false, margin: '-80px' }}
       transition={{ duration: 0.5 }}
     >
       <div className="flex items-baseline gap-4">

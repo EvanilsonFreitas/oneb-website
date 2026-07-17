@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
+import { Microsoft365Section } from '@/components/sections/Microsoft365Section'
 import { technologiesData, type Technology } from '@/constants/mockData'
 
 const categories: { label: Technology['category']; icon: ReactNode }[] = [
@@ -131,7 +132,10 @@ export function Technologies() {
         </div>
       </section>
 
-      {/* 4. CTA SECTION */}
+      {/* 4. SOLUÇÕES MICROSOFT 365 */}
+      <Microsoft365Section />
+
+      {/* 5. CTA SECTION */}
       <section className="border-t border-white/5 py-20">
         <div className="mx-auto max-w-4xl px-6 text-center lg:px-[7.5%]">
           <h3 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
@@ -144,7 +148,7 @@ export function Technologies() {
           </p>
           <div className="mt-8">
             <Link to="/contato">
-              <GlowButton variant="primary" className="px-8 py-3">
+              <GlowButton variant="primary">
                 Falar com um Consultor <ArrowRight className="h-4 w-4" />
               </GlowButton>
             </Link>

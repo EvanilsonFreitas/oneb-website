@@ -83,7 +83,7 @@ export function Mission() {
                 key={pillar.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <GlassCard
@@ -112,7 +112,7 @@ export function Mission() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
           >
             <GlassCard
@@ -142,14 +142,12 @@ export function Mission() {
           </h3>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Link to="/contato">
-              <GlowButton variant="primary" className="px-8 py-3">
+              <GlowButton variant="primary">
                 Agendar Diagnóstico <ArrowRight className="h-4 w-4" />
               </GlowButton>
             </Link>
             <Link to="/valores">
-              <GlowButton variant="glass" className="px-8 py-3">
-                Conhecer Nossos Valores
-              </GlowButton>
+              <GlowButton variant="glass">Conhecer Nossos Valores</GlowButton>
             </Link>
           </div>
         </div>

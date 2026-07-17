@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Search, Clock, Users, Quote } from 'lucide-react'
+import { CountUp } from '@/components/common/CountUp'
 import { blogService } from '@/services/blogService'
 import type { CaseStudy } from '@/constants/mockData'
 import { CardGridSkeleton } from '@/components/feedback/Skeleton'
@@ -58,8 +59,8 @@ export function Cases() {
               Resultados de Negócio
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
-              Não é sobre dashboards.{' '}
-              <span className="text-primary-500">É sobre impacto.</span>
+              <span className="text-primary-500">Impacto real.</span> Não é
+              sobre dashboards.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-400 md:text-lg">
               Cada case abaixo carrega um problema de negócio real, a solução
@@ -143,7 +144,7 @@ function CaseRow({ item, reverse }: { item: CaseStudy; reverse: boolean }) {
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: false, margin: '-80px' }}
       transition={{ duration: 0.6 }}
       className="grid grid-cols-1 items-center gap-10 py-14 lg:grid-cols-12 lg:gap-14"
     >
@@ -195,7 +196,7 @@ function CaseRow({ item, reverse }: { item: CaseStudy; reverse: boolean }) {
           {item.kpis.slice(0, 3).map((kpi) => (
             <div key={kpi.label}>
               <p className="text-primary-400 text-2xl font-extrabold tracking-tight md:text-3xl">
-                {kpi.value}
+                <CountUp value={kpi.value} />
               </p>
               <p className="mt-1 text-[10px] leading-tight tracking-wide text-neutral-500 uppercase">
                 {kpi.label}
@@ -203,6 +204,22 @@ function CaseRow({ item, reverse }: { item: CaseStudy; reverse: boolean }) {
             </div>
           ))}
         </div>
+
+        {/* Comparação antes/depois em destaque */}
+        {item.beforeAfter[0] && (
+          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3 text-xs">
+            <span className="font-bold tracking-widest text-neutral-500 uppercase">
+              {item.beforeAfter[0].label}:
+            </span>
+            <span className="text-neutral-500 line-through decoration-neutral-600">
+              {item.beforeAfter[0].before}
+            </span>
+            <ArrowRight className="h-3.5 w-3.5 text-neutral-600" />
+            <span className="text-primary-400 font-bold">
+              {item.beforeAfter[0].after}
+            </span>
+          </div>
+        )}
 
         <blockquote className="mt-6 flex gap-3 border-l-2 border-white/10 pl-4">
           <Quote className="text-secondary-400 h-4 w-4 shrink-0 -scale-x-100" />

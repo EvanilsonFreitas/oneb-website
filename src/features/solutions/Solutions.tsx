@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import { GlassCard } from '@/components/common/GlassCard'
+import { CountUp } from '@/components/common/CountUp'
 import { GlowButton } from '@/components/common/GlowButton'
 import { solutionIllustrations } from '@/components/common/illustrations/SolutionIllustrations'
 import { solutionsData } from '@/constants/mockData'
@@ -61,7 +62,7 @@ export function Solutions() {
                 key={sol.slug}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.6 }}
                 className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-2 ${
                   reversed ? 'lg:[&>*:first-child]:order-2' : ''
@@ -89,7 +90,7 @@ export function Solutions() {
                     {sol.metrics.map((metric) => (
                       <div key={metric.label}>
                         <p className={`text-xl font-extrabold ${accent.text}`}>
-                          {metric.value}
+                          <CountUp value={metric.value} />
                         </p>
                         <p className="mt-0.5 max-w-[130px] text-[11px] leading-tight text-neutral-500">
                           {metric.label}
@@ -118,7 +119,6 @@ export function Solutions() {
                         variant={
                           sol.accent === 'primary' ? 'primary' : 'secondary'
                         }
-                        className="px-6 py-3"
                       >
                         Explorar Solução <ArrowRight className="h-4 w-4" />
                       </GlowButton>
@@ -168,7 +168,7 @@ export function Solutions() {
           </p>
           <div className="mt-8">
             <Link to="/contato">
-              <GlowButton variant="primary" className="px-8 py-3">
+              <GlowButton variant="primary">
                 Agendar Diagnóstico Gratuito <ArrowRight className="h-4 w-4" />
               </GlowButton>
             </Link>

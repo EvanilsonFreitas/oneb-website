@@ -149,7 +149,7 @@ export function Careers() {
                 key={value.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <GlassCard
@@ -215,7 +215,7 @@ export function Careers() {
                 </div>
                 <GlowButton
                   variant="outline"
-                  className="w-full shrink-0 px-5 py-2.5 text-xs sm:w-auto"
+                  className="w-full shrink-0 sm:w-auto"
                   onClick={() =>
                     setValue('position', position.slug, {
                       shouldValidate: true,
@@ -376,9 +376,8 @@ export function Careers() {
               <div className="mt-2 flex justify-end">
                 <GlowButton
                   type="submit"
-                  disabled={isSubmitting}
-                  variant="secondary"
-                  className="px-8 py-3"
+                  loading={isSubmitting}
+                  variant="primary"
                 >
                   {isSubmitting ? 'Enviando...' : 'Enviar Candidatura'}{' '}
                   <Send className="h-4 w-4" />

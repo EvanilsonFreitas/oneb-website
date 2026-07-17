@@ -87,7 +87,7 @@ export function Blog() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`cursor-pointer rounded-lg border px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
                     selectedCategory === cat
-                      ? 'bg-secondary-600 border-secondary-600 text-white shadow-md'
+                      ? 'bg-primary-500 border-primary-500 text-black shadow-md'
                       : 'border-white/5 bg-white/5 text-neutral-400 hover:border-white/15 hover:text-white'
                   }`}
                 >
@@ -111,9 +111,9 @@ export function Blog() {
         </div>
       </section>
 
-      {/* 3. POST INDEX — minimal editorial list, not cards */}
+      {/* 3. POST INDEX — editorial rows com ilustração lateral */}
       <section className="py-6">
-        <div className="mx-auto max-w-4xl px-6 lg:px-[7.5%]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-[7.5%]">
           {loading ? (
             <CardGridSkeleton count={3} />
           ) : (
@@ -152,33 +152,60 @@ function PostListItem({ post }: { post: BlogPost }) {
     >
       <Link
         to={`/blog/${post.slug}`}
-        className="group block py-8 transition-colors hover:bg-white/[0.02]"
+        className="group grid grid-cols-1 gap-8 py-10 transition-colors hover:bg-white/[0.02] md:grid-cols-12 md:items-center"
       >
-        <div className="flex items-center gap-2 font-mono text-xs text-neutral-500">
-          <time>{post.date}</time>
-          <span className="text-neutral-700">·</span>
-          <span className="flex items-center gap-1">
-            <Clock className="h-3 w-3" />
-            {post.readTime} de leitura
-          </span>
+        {/* Ilustração lateral / imagem temática do artigo */}
+        <div className="overflow-hidden rounded-2xl border border-white/10 md:col-span-4">
+          <img
+            src={post.image}
+            alt={post.title}
+            loading="lazy"
+            className="h-48 w-full object-cover opacity-70 transition-transform duration-700 group-hover:scale-105 md:h-56"
+          />
         </div>
 
-        <h2 className="group-hover:text-primary-400 mt-3 text-2xl leading-snug font-extrabold tracking-tight text-white transition-colors md:text-3xl">
-          {post.title}
-        </h2>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <span className="border-secondary-500/25 bg-secondary-500/5 text-secondary-400 rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide uppercase">
-            {post.category}
-          </span>
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-neutral-400 uppercase"
-            >
-              {tag}
+        <div className="md:col-span-8">
+          <div className="flex items-center gap-2 font-mono text-xs text-neutral-500">
+            <time>{post.date}</time>
+            <span className="text-neutral-700">·</span>
+            <span className="flex items-center gap-1">
+              <Clock className="h-3 w-3" />
+              {post.readTime} de leitura
             </span>
-          ))}
+          </div>
+
+          <h2 className="group-hover:text-primary-400 mt-3 text-2xl leading-snug font-extrabold tracking-tight text-white transition-colors md:text-3xl">
+            {post.title}
+          </h2>
+
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-400 md:text-base">
+            {post.excerpt}
+          </p>
+
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            <span className="border-secondary-500/25 bg-secondary-500/5 text-secondary-400 rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide uppercase">
+              {post.category}
+            </span>
+            {post.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-neutral-400 uppercase"
+              >
+                {tag}
+              </span>
+            ))}
+            <span className="ml-auto hidden items-center gap-2 md:flex">
+              <img
+                src={post.author.avatar}
+                alt={post.author.name}
+                loading="lazy"
+                className="h-6 w-6 rounded-full border border-white/10 object-cover"
+              />
+              <span className="text-xs text-neutral-500">
+                {post.author.name}
+              </span>
+            </span>
+          </div>
         </div>
       </Link>
     </motion.article>

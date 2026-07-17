@@ -294,7 +294,7 @@ export function Navbar() {
           {/* Desktop Right Actions */}
           <div className="hidden md:block">
             <Link to="/contato">
-              <GlowButton variant="primary" className="px-5 py-2.5">
+              <GlowButton variant="primary">
                 Falar com Consultor <ArrowRight className="h-4 w-4" />
               </GlowButton>
             </Link>
@@ -461,7 +461,7 @@ export function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="w-full"
                 >
-                  <GlowButton variant="primary" fullWidth className="py-3">
+                  <GlowButton variant="primary" fullWidth>
                     Falar com Consultor <ArrowRight className="h-4 w-4" />
                   </GlowButton>
                 </Link>

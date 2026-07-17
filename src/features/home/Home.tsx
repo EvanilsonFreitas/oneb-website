@@ -11,10 +11,12 @@ import {
   CheckCircle2,
   TrendingUp,
   Cpu,
-  Quote,
   Calendar,
 } from 'lucide-react'
 import { fadeIn, staggerContainer } from '@/animations/variants'
+import { Parallax } from '@/animations/Reveal'
+import { ConsultingSection } from '@/components/sections/ConsultingSection'
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
 import { Marquee } from '@/components/common/Marquee'
@@ -22,12 +24,7 @@ import { CountUp } from '@/components/common/CountUp'
 import { ScrollIndicator } from '@/components/common/ScrollIndicator'
 import { brandLogos } from '@/components/common/BrandLogos'
 import { IllustrationEngineering } from '@/components/common/illustrations/SolutionIllustrations'
-import {
-  solutionsData,
-  casesData,
-  blogData,
-  testimonialsData,
-} from '@/constants/mockData'
+import { solutionsData, casesData, blogData } from '@/constants/mockData'
 
 const getIcon = (iconName: string) => {
   switch (iconName) {
@@ -122,9 +119,19 @@ export function Home() {
     <div className="relative overflow-hidden">
       {/* 1. HERO SECTION */}
       <section className="relative flex min-h-[85vh] items-center justify-center pt-20 pb-16">
-        {/* Soft colorful blur background shapes */}
-        <div className="bg-primary-500/10 absolute top-1/4 left-1/4 -z-10 h-72 w-72 animate-pulse rounded-full blur-[100px]" />
-        <div className="bg-secondary-500/10 absolute right-1/4 bottom-1/4 -z-10 h-80 w-80 animate-pulse rounded-full blur-[120px]" />
+        {/* Soft colorful blur background shapes com parallax sutil */}
+        <Parallax
+          offset={60}
+          className="pointer-events-none absolute top-1/4 left-1/4 -z-10"
+        >
+          <div className="bg-primary-500/10 h-72 w-72 animate-pulse rounded-full blur-[100px]" />
+        </Parallax>
+        <Parallax
+          offset={-40}
+          className="pointer-events-none absolute right-1/4 bottom-1/4 -z-10"
+        >
+          <div className="bg-secondary-500/10 h-80 w-80 animate-pulse rounded-full blur-[120px]" />
+        </Parallax>
 
         <div className="mx-auto max-w-7xl px-6 text-center lg:px-[7.5%]">
           <motion.div
@@ -152,8 +159,8 @@ export function Home() {
               variants={fadeIn('up', 0.6)}
               className="max-w-4xl font-sans text-4xl leading-[1.1] font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl"
             >
-              Decisões Inteligentes{' '}
-              <span className="text-primary-500">Esculpidas em Dados</span>
+              <span className="text-primary-500">Decisões Inteligentes</span>{' '}
+              Esculpidas em Dados
             </motion.h1>
 
             {/* Subheading */}
@@ -172,18 +179,12 @@ export function Home() {
               className="mt-10 flex w-full max-w-md flex-col justify-center gap-4 sm:flex-row"
             >
               <Link to="/contato" className="w-full sm:w-auto">
-                <GlowButton
-                  variant="primary"
-                  className="w-full px-8 py-3.5 sm:w-auto"
-                >
+                <GlowButton variant="primary" className="w-full sm:w-auto">
                   Agendar Diagnóstico <ArrowRight className="h-4 w-4" />
                 </GlowButton>
               </Link>
               <Link to="/solucoes" className="w-full sm:w-auto">
-                <GlowButton
-                  variant="glass"
-                  className="w-full px-8 py-3.5 sm:w-auto"
-                >
+                <GlowButton variant="glass" className="w-full sm:w-auto">
                   Ver Soluções
                 </GlowButton>
               </Link>
@@ -223,7 +224,7 @@ export function Home() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: false, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="flex flex-col items-center p-4 text-center"
               >
@@ -248,7 +249,7 @@ export function Home() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: false, margin: '-100px' }}
             transition={{ duration: 0.6 }}
             className="mx-auto max-w-3xl text-center text-2xl font-extrabold tracking-tight text-white md:text-4xl"
           >
@@ -262,7 +263,7 @@ export function Home() {
                 key={pillar}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
+                viewport={{ once: false, margin: '-80px' }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="flex flex-col items-center gap-4 bg-black px-6 py-10 text-center"
               >
@@ -317,18 +318,27 @@ export function Home() {
                 key={solution.slug}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: false, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="flex h-full"
               >
                 <GlassCard
-                  className="group flex h-full flex-col justify-between"
+                  className="group flex h-full flex-col justify-between overflow-hidden p-0"
                   glowColor="rgba(62, 240, 170, 0.12)"
                 >
-                  <div>
-                    <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/5 bg-neutral-900">
+                  {/* Fotografia real de cenário de aplicação — padrão visual dos cases */}
+                  <div className="relative h-40 w-full overflow-hidden border-b border-white/5 bg-neutral-900">
+                    <img
+                      src={solution.photo}
+                      alt={solution.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="border-primary-500/20 absolute top-4 left-4 inline-flex h-9 w-9 items-center justify-center rounded-lg border bg-black/75 backdrop-blur-sm [&_svg]:h-5 [&_svg]:w-5">
                       {getIcon(solution.icon)}
-                    </div>
+                    </span>
+                  </div>
+                  <div className="p-6 pb-0">
                     <h4 className="group-hover:text-primary-400 mb-3 text-lg font-bold text-white transition-colors">
                       {solution.title}
                     </h4>
@@ -337,7 +347,7 @@ export function Home() {
                     </p>
                   </div>
 
-                  <div className="mt-auto">
+                  <div className="mt-auto p-6 pt-0">
                     <div className="mb-6 flex flex-wrap gap-1.5">
                       {solution.technologies.slice(0, 3).map((tech) => (
                         <span
@@ -385,7 +395,7 @@ export function Home() {
                     key={item.step}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
+                    viewport={{ once: false, margin: '-80px' }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
                     className="flex gap-4"
                   >
@@ -435,7 +445,7 @@ export function Home() {
                     className="rounded-xl border border-white/8 bg-black/40 p-4 text-center"
                   >
                     <p className="text-primary-400 text-lg font-extrabold">
-                      {s.v}
+                      <CountUp value={s.v} />
                     </p>
                     <p className="mt-1 text-[10px] text-neutral-500">{s.l}</p>
                   </div>
@@ -445,6 +455,9 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* 4.8. CONSULTORIA ESPECIALIZADA */}
+      <ConsultingSection />
 
       {/* 5. FEATURED CASES */}
       <section className="relative z-10 border-t border-white/5 bg-neutral-950/20 py-24">
@@ -459,9 +472,7 @@ export function Home() {
               </h3>
             </div>
             <Link to="/cases">
-              <GlowButton variant="outline" className="px-5 py-2.5">
-                Ver Todos os Cases
-              </GlowButton>
+              <GlowButton variant="outline">Ver Todos os Cases</GlowButton>
             </Link>
           </div>
 
@@ -471,7 +482,7 @@ export function Home() {
                 key={item.slug}
                 initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: false, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="flex h-full"
               >
@@ -533,57 +544,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* 5.5. TESTIMONIALS SECTION */}
-      <section className="relative z-10 py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-[7.5%]">
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="text-secondary-400 mb-3 text-xs font-semibold tracking-wider uppercase">
-              Depoimentos
-            </h2>
-            <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              O Que Nossos Clientes Dizem
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {testimonialsData.map((testimonial, i) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex h-full"
-              >
-                <GlassCard
-                  className="flex h-full flex-col justify-between"
-                  glowColor="rgba(62, 240, 170, 0.12)"
-                >
-                  <Quote className="text-secondary-500/40 mb-4 h-7 w-7" />
-                  <p className="mb-6 text-sm leading-relaxed text-neutral-300">
-                    “{testimonial.quote}”
-                  </p>
-                  <div className="mt-auto flex items-center gap-3 border-t border-white/5 pt-4">
-                    <img
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      className="h-10 w-10 rounded-full border border-white/10 object-cover"
-                    />
-                    <div>
-                      <p className="text-sm font-semibold text-white">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-xs text-neutral-500">
-                        {testimonial.role} · {testimonial.company}
-                      </p>
-                    </div>
-                  </div>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 5.5. FEEDBACKS DE CLIENTES */}
+      <TestimonialsSection />
 
       {/* 6. BLOG PREVIEW SECTION */}
       <section className="relative z-10 border-t border-white/5 py-24">
@@ -598,9 +560,7 @@ export function Home() {
               </h3>
             </div>
             <Link to="/blog">
-              <GlowButton variant="outline" className="px-5 py-2.5">
-                Ir Para o Blog
-              </GlowButton>
+              <GlowButton variant="outline">Ir Para o Blog</GlowButton>
             </Link>
           </div>
 
@@ -610,7 +570,7 @@ export function Home() {
                 key={post.slug}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: false, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="group grid grid-cols-1 gap-3 border-b border-white/10 py-8 md:grid-cols-12 md:items-center md:gap-8"
               >
@@ -660,7 +620,7 @@ export function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.7 }}
           >
             <GlassCard
@@ -681,19 +641,13 @@ export function Home() {
               </p>
               <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
                 <Link to="/contato">
-                  <GlowButton
-                    variant="primary"
-                    className="w-full px-8 py-3.5 text-base sm:w-auto"
-                  >
+                  <GlowButton variant="primary" className="w-full sm:w-auto">
                     Agendar Diagnóstico Gratuito{' '}
                     <ArrowRight className="h-4 w-4" />
                   </GlowButton>
                 </Link>
                 <Link to="/quem-somos">
-                  <GlowButton
-                    variant="glass"
-                    className="w-full px-8 py-3.5 text-base sm:w-auto"
-                  >
+                  <GlowButton variant="glass" className="w-full sm:w-auto">
                     Conhecer a OneB
                   </GlowButton>
                 </Link>

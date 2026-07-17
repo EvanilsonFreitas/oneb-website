@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -11,8 +11,9 @@ import {
   Clock,
   ChevronRight,
   Check,
+  Video,
 } from 'lucide-react'
-import { leadService } from '@/services/leadService'
+import { leadService, type MeetingConfirmation } from '@/services/leadService'
 import { GlassCard } from '@/components/common/GlassCard'
 import { GlowButton } from '@/components/common/GlowButton'
 
@@ -33,6 +34,45 @@ const contactSchema = z.object({
 })
 
 type ContactFormValues = z.infer<typeof contactSchema>
+
+const WEEKDAYS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
+const MONTHS = [
+  'Jan',
+  'Fev',
+  'Mar',
+  'Abr',
+  'Mai',
+  'Jun',
+  'Jul',
+  'Ago',
+  'Set',
+  'Out',
+  'Nov',
+  'Dez',
+]
+
+/** Próximos 5 dias úteis a partir de hoje. */
+function getNextBusinessDays(count = 5) {
+  const options: { day: string; date: string; value: string }[] = []
+  const cursor = new Date()
+  while (options.length < count) {
+    cursor.setDate(cursor.getDate() + 1)
+    const dow = cursor.getDay()
+    if (dow === 0 || dow === 6) continue
+    options.push({
+      day: WEEKDAYS[dow],
+      date: `${String(cursor.getDate()).padStart(2, '0')} ${MONTHS[cursor.getMonth()]}`,
+      value: cursor.toISOString().slice(0, 10),
+    })
+  }
+  return options
+}
+
+/** Formata "2026-07-20" → "20 Jul". */
+function formatDateLabel(iso: string) {
+  const [, month, day] = iso.split('-').map(Number)
+  return `${String(day).padStart(2, '0')} ${MONTHS[month - 1]}`
+}
 
 export function Contact() {
   const [formStatus, setFormStatus] = useState<{
@@ -80,22 +120,18 @@ export function Contact() {
   }
 
   // Interactive scheduler states
+  const dateOptions = useMemo(() => getNextBusinessDays(5), [])
   const [selectedDate, setSelectedDate] = useState<string>('')
   const [selectedTime, setSelectedTime] = useState<string>('')
   const [schedulerName, setSchedulerName] = useState('')
   const [schedulerEmail, setSchedulerEmail] = useState('')
   const [schedulerCompany, setSchedulerCompany] = useState('')
   const [schedulerNotes, setSchedulerNotes] = useState('')
-  const [schedulerStatus, setSchedulerStatus] = useState<string | null>(null)
+  const [confirmation, setConfirmation] = useState<MeetingConfirmation | null>(
+    null,
+  )
+  const [schedulerError, setSchedulerError] = useState<string | null>(null)
   const [schedulerLoading, setSchedulerLoading] = useState(false)
-
-  const dateOptions = [
-    { day: 'Seg', date: '13 Jul', value: '2026-07-13' },
-    { day: 'Ter', date: '14 Jul', value: '2026-07-14' },
-    { day: 'Qua', date: '15 Jul', value: '2026-07-15' },
-    { day: 'Qui', date: '16 Jul', value: '2026-07-16' },
-    { day: 'Sex', date: '17 Jul', value: '2026-07-17' },
-  ]
 
   const timeSlots = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00']
 
@@ -107,12 +143,14 @@ export function Contact() {
       !schedulerEmail ||
       !schedulerCompany
     ) {
-      alert('Por favor, preencha todas as informações de agendamento.')
+      setSchedulerError(
+        'Preencha data, horário e seus dados de contato para confirmar.',
+      )
       return
     }
 
     setSchedulerLoading(true)
-    setSchedulerStatus(null)
+    setSchedulerError(null)
 
     try {
       const res = await leadService.scheduleMeeting({
@@ -124,7 +162,7 @@ export function Contact() {
         notes: schedulerNotes,
       })
 
-      setSchedulerStatus(res.message)
+      setConfirmation(res)
       // Clear inputs
       setSchedulerName('')
       setSchedulerEmail('')
@@ -133,7 +171,7 @@ export function Contact() {
       setSelectedDate('')
       setSelectedTime('')
     } catch {
-      alert('Erro ao agendar reunião. Tente de novo.')
+      setSchedulerError('Erro ao agendar reunião. Tente de novo.')
     } finally {
       setSchedulerLoading(false)
     }
@@ -159,94 +197,24 @@ export function Contact() {
               Contate Nossos Consultores
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
-              Vamos Conversar sobre{' '}
-              <span className="text-primary-500">Seus Dados?</span>
+              <span className="text-primary-500">Vamos conversar</span> sobre
+              seus dados?
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-400 md:text-lg">
-              Preencha o formulário de contato abaixo ou selecione um horário em
-              nossa agenda comercial para uma demonstração técnica.
+              Envie uma mensagem comercial ou agende agora sua reunião
+              diagnóstica gratuita — o formulário de agendamento acompanha você
+              durante toda a página.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. FORM & SCHEDULER GRID */}
+      {/* 2. CONTENT + STICKY SCHEDULER */}
       <section className="py-6">
         <div className="mx-auto max-w-7xl px-6 lg:px-[7.5%]">
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
-            {/* Contact Details & Info (Left Panel) */}
-            <div className="flex flex-col gap-8 lg:col-span-4">
-              <GlassCard
-                className="border-white/10"
-                glowColor="rgba(62, 240, 170, 0.1)"
-              >
-                <h3 className="mb-6 text-base font-bold text-white">
-                  Informações de Contato
-                </h3>
-                <div className="flex flex-col gap-6">
-                  <div className="flex items-start gap-4">
-                    <Mail className="text-primary-400 mt-0.5 h-5 w-5 shrink-0" />
-                    <div>
-                      <p className="text-xs font-semibold text-neutral-400 uppercase">
-                        E-mail Comercial
-                      </p>
-                      <a
-                        href="mailto:contato@oneb.com.br"
-                        className="hover:text-primary-400 text-sm font-semibold text-white transition-colors"
-                      >
-                        contato@oneb.com.br
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Phone className="text-primary-400 mt-0.5 h-5 w-5 shrink-0" />
-                    <div>
-                      <p className="text-xs font-semibold text-neutral-400 uppercase">
-                        Telefone / WhatsApp
-                      </p>
-                      <a
-                        href="tel:+5511999999999"
-                        className="hover:text-primary-400 text-sm font-semibold text-white transition-colors"
-                      >
-                        (11) 99999-9999
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <MapPin className="text-primary-400 mt-0.5 h-5 w-5 shrink-0" />
-                    <div>
-                      <p className="text-xs font-semibold text-neutral-400 uppercase">
-                        Localização
-                      </p>
-                      <p className="text-sm font-semibold text-white">
-                        São Paulo, SP — Atendimento Remoto & Híbrido
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
-
-              {/* Informative lead conversion helper */}
-              <GlassCard
-                className="border-white/5 bg-neutral-950/20"
-                interactive={false}
-              >
-                <h4 className="text-secondary-400 mb-3 text-xs font-bold tracking-wider uppercase">
-                  Reunião Diagnóstica
-                </h4>
-                <p className="text-xs leading-relaxed text-neutral-400">
-                  Nosso diagnóstico inicial de 30 minutos é focado na
-                  identificação rápida de melhorias nos bancos de dados,
-                  gargalos de performance DAX e redução de custos com licenças
-                  desnecessárias.
-                </p>
-              </GlassCard>
-            </div>
-
-            {/* Forms Panel (Right/Center Grid) */}
-            <div className="flex flex-col gap-12 lg:col-span-8">
+            {/* Scrollable column: message form + contact info */}
+            <div className="flex flex-col gap-10 lg:col-span-7">
               {/* Form 1: Classic Contact Form */}
               <GlassCard
                 className="border-white/10 p-8"
@@ -372,6 +340,9 @@ export function Contact() {
                       <option value="consultoria">
                         Consultoria Estratégica & Mentoria
                       </option>
+                      <option value="desenvolvimento-web">
+                        Desenvolvimento Web & Integrações
+                      </option>
                     </select>
                   </div>
 
@@ -399,9 +370,8 @@ export function Contact() {
                   <div className="mt-2 flex justify-end">
                     <GlowButton
                       type="submit"
-                      disabled={isSubmitting}
+                      loading={isSubmitting}
                       variant="primary"
-                      className="px-8 py-3"
                     >
                       {isSubmitting ? 'Enviando...' : 'Enviar Solicitação'}{' '}
                       <ChevronRight className="h-4 w-4" />
@@ -422,140 +392,265 @@ export function Contact() {
                 </form>
               </GlassCard>
 
-              {/* Form 2: Interactive Scheduler Calendar Simulation */}
+              {/* Contact Details & Info */}
               <GlassCard
-                className="border-white/10 bg-neutral-950/20 p-8"
-                glowColor="rgba(62, 240, 170, 0.15)"
+                className="border-white/10"
+                glowColor="rgba(62, 240, 170, 0.1)"
+              >
+                <h3 className="mb-6 text-base font-bold text-white">
+                  Informações de Contato
+                </h3>
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-start gap-4">
+                    <Mail className="text-primary-400 mt-0.5 h-5 w-5 shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-neutral-400 uppercase">
+                        E-mail Comercial
+                      </p>
+                      <a
+                        href="mailto:contato@oneb.com.br"
+                        className="hover:text-primary-400 text-sm font-semibold text-white transition-colors"
+                      >
+                        contato@oneb.com.br
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Phone className="text-primary-400 mt-0.5 h-5 w-5 shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-neutral-400 uppercase">
+                        Telefone / WhatsApp
+                      </p>
+                      <a
+                        href="tel:+5511999999999"
+                        className="hover:text-primary-400 text-sm font-semibold text-white transition-colors"
+                      >
+                        (11) 99999-9999
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <MapPin className="text-primary-400 mt-0.5 h-5 w-5 shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-neutral-400 uppercase">
+                        Localização
+                      </p>
+                      <p className="text-sm font-semibold text-white">
+                        São Paulo, SP — Atendimento Remoto & Híbrido
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </GlassCard>
+
+              {/* Informative lead conversion helper */}
+              <GlassCard
+                className="border-white/5 bg-neutral-950/20"
                 interactive={false}
               >
-                <h3 className="mb-2 flex items-center gap-2 text-lg font-bold text-white">
-                  <Calendar className="text-primary-400 h-5 w-5 animate-pulse" />
-                  Agendar Reunião Técnica
-                </h3>
-                <p className="mb-6 text-xs text-neutral-400">
-                  Selecione um dia da semana e o horário de sua preferência para
-                  agendarmos de imediato.
+                <h4 className="text-primary-400 mb-3 text-xs font-bold tracking-wider uppercase">
+                  Como funciona a reunião diagnóstica
+                </h4>
+                <p className="text-xs leading-relaxed text-neutral-400">
+                  30 minutos com um consultor sênior, sem custo e sem
+                  compromisso. Identificamos melhorias nos bancos de dados,
+                  gargalos de performance e redução de custos com licenças — e
+                  você sai com um plano de próximos passos, ficando ou não
+                  conosco.
                 </p>
+              </GlassCard>
+            </div>
 
-                <form
-                  onSubmit={onSchedulerSubmit}
-                  className="flex flex-col gap-6"
-                >
-                  {/* Date Grid */}
-                  <div>
-                    <span className="mb-3 block text-xs font-semibold text-neutral-400 uppercase">
-                      1. Escolha a Data
-                    </span>
-                    <div className="grid grid-cols-5 gap-2">
-                      {dateOptions.map((opt) => (
-                        <button
-                          key={opt.value}
-                          type="button"
-                          onClick={() => setSelectedDate(opt.value)}
-                          className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border p-2 transition-all ${
-                            selectedDate === opt.value
-                              ? 'border-primary-500 bg-primary-500/10 text-white shadow-[0_0_8px_rgba(62,240,170,0.15)]'
-                              : 'border-white/5 bg-white/5 text-neutral-400 hover:border-white/10 hover:text-white'
-                          }`}
+            {/* STICKY column: diagnostic meeting scheduler (conversão) */}
+            <div className="lg:sticky lg:top-28 lg:col-span-5">
+              <GlassCard
+                className="border-primary-500/20 bg-neutral-950/70 p-8"
+                glowColor="rgba(62, 240, 170, 0.18)"
+                interactive={false}
+              >
+                {confirmation ? (
+                  /* Confirmação de agendamento */
+                  <div className="flex flex-col items-center py-6 text-center">
+                    <div className="bg-primary-500 mb-5 flex h-14 w-14 items-center justify-center rounded-full text-black">
+                      <Check className="h-7 w-7 stroke-[3]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white">
+                      Reunião confirmada!
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-neutral-400">
+                      {confirmation.message}
+                    </p>
+
+                    <div className="mt-6 w-full rounded-2xl border border-white/10 bg-black/40 p-5 text-left">
+                      <div className="flex items-center gap-3 border-b border-white/5 pb-3">
+                        <Calendar className="text-primary-400 h-4 w-4" />
+                        <span className="text-sm font-semibold text-white">
+                          {formatDateLabel(confirmation.meeting.date)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 border-b border-white/5 py-3">
+                        <Clock className="text-primary-400 h-4 w-4" />
+                        <span className="text-sm font-semibold text-white">
+                          {confirmation.meeting.timeSlot} (horário de Brasília)
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 pt-3">
+                        <Video className="text-primary-400 h-4 w-4 shrink-0" />
+                        <a
+                          href={confirmation.meeting.meetingUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-primary-400 truncate text-sm font-semibold hover:text-white"
                         >
-                          <span className="text-[10px] font-bold uppercase">
-                            {opt.day}
-                          </span>
-                          <span className="mt-1 text-xs font-extrabold">
-                            {opt.date}
-                          </span>
-                        </button>
-                      ))}
+                          {confirmation.meeting.meetingUrl}
+                        </a>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Time Slots Grid */}
-                  <div>
-                    <span className="mb-3 block text-xs font-semibold text-neutral-400 uppercase">
-                      2. Escolha o Horário
-                    </span>
-                    <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
-                      {timeSlots.map((time) => (
-                        <button
-                          key={time}
-                          type="button"
-                          onClick={() => setSelectedTime(time)}
-                          className={`flex cursor-pointer items-center justify-center rounded-lg border py-2 text-xs font-bold transition-all ${
-                            selectedTime === time
-                              ? 'border-secondary-500 bg-secondary-500/10 text-white shadow-[0_0_8px_rgba(62,240,170,0.15)]'
-                              : 'border-white/5 bg-white/5 text-neutral-400 hover:border-white/10 hover:text-white'
-                          }`}
-                        >
-                          <Clock className="mr-1.5 h-3 w-3 shrink-0" />
-                          {time}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                    <p className="mt-4 text-[11px] text-neutral-500">
+                      Você receberá um e-mail corporativo com a confirmação,
+                      data, horário e o link da reunião no Google Meet.
+                    </p>
 
-                  {/* Required Info for Schedule */}
-                  <div>
-                    <span className="mb-3 block text-xs font-semibold text-neutral-400 uppercase">
-                      3. Seus Dados de Contato
-                    </span>
-                    <div className="mb-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                      <input
-                        type="text"
-                        placeholder="Nome completo"
-                        value={schedulerName}
-                        onChange={(e) => setSchedulerName(e.target.value)}
-                        className="focus:border-primary-500/50 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
-                        required
-                      />
-                      <input
-                        type="email"
-                        placeholder="E-mail profissional"
-                        value={schedulerEmail}
-                        onChange={(e) => setSchedulerEmail(e.target.value)}
-                        className="focus:border-primary-500/50 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
-                        required
-                      />
-                      <input
-                        type="text"
-                        placeholder="Empresa"
-                        value={schedulerCompany}
-                        onChange={(e) => setSchedulerCompany(e.target.value)}
-                        className="focus:border-primary-500/50 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
-                        required
-                      />
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Notas adicionais (opcional)"
-                      value={schedulerNotes}
-                      onChange={(e) => setSchedulerNotes(e.target.value)}
-                      className="focus:border-primary-500/50 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
-                    />
-                  </div>
-
-                  {/* Confirm Schedule Button */}
-                  <div className="flex justify-end">
                     <GlowButton
-                      type="submit"
-                      disabled={schedulerLoading}
-                      variant="secondary"
-                      className="px-8 py-3 text-xs font-semibold"
+                      variant="glass"
+                      className="mt-6"
+                      onClick={() => setConfirmation(null)}
                     >
-                      {schedulerLoading
-                        ? 'Reservando Horário...'
-                        : 'Confirmar Agendamento Comercial'}
+                      Agendar outra reunião
                     </GlowButton>
                   </div>
+                ) : (
+                  <>
+                    <h3 className="mb-2 flex items-center gap-2 text-lg font-bold text-white">
+                      <Calendar className="text-primary-400 h-5 w-5" />
+                      Reunião Diagnóstica Gratuita
+                    </h3>
+                    <p className="mb-6 text-xs text-neutral-400">
+                      Escolha o melhor dia e horário. A confirmação é
+                      automática, com link do Google Meet.
+                    </p>
 
-                  {schedulerStatus && (
-                    <div className="flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 text-xs font-medium text-emerald-400">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-neutral-950">
-                        <Check className="h-3.5 w-3.5 stroke-[3]" />
+                    <form
+                      onSubmit={onSchedulerSubmit}
+                      className="flex flex-col gap-6"
+                    >
+                      {/* Date Grid */}
+                      <div>
+                        <span className="mb-3 block text-xs font-semibold text-neutral-400 uppercase">
+                          1. Escolha a Data
+                        </span>
+                        <div className="grid grid-cols-5 gap-2">
+                          {dateOptions.map((opt) => (
+                            <button
+                              key={opt.value}
+                              type="button"
+                              onClick={() => setSelectedDate(opt.value)}
+                              className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border p-2 transition-all ${
+                                selectedDate === opt.value
+                                  ? 'border-primary-500 bg-primary-500/10 text-white shadow-[0_0_8px_rgba(62,240,170,0.15)]'
+                                  : 'border-white/5 bg-white/5 text-neutral-400 hover:border-white/10 hover:text-white'
+                              }`}
+                            >
+                              <span className="text-[10px] font-bold uppercase">
+                                {opt.day}
+                              </span>
+                              <span className="mt-1 text-xs font-extrabold">
+                                {opt.date}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                      <p>{schedulerStatus}</p>
-                    </div>
-                  )}
-                </form>
+
+                      {/* Time Slots Grid */}
+                      <div>
+                        <span className="mb-3 block text-xs font-semibold text-neutral-400 uppercase">
+                          2. Escolha o Horário
+                        </span>
+                        <div className="grid grid-cols-3 gap-2">
+                          {timeSlots.map((time) => (
+                            <button
+                              key={time}
+                              type="button"
+                              onClick={() => setSelectedTime(time)}
+                              className={`flex cursor-pointer items-center justify-center rounded-lg border py-2 text-xs font-bold transition-all ${
+                                selectedTime === time
+                                  ? 'border-primary-500 bg-primary-500/10 text-white shadow-[0_0_8px_rgba(62,240,170,0.15)]'
+                                  : 'border-white/5 bg-white/5 text-neutral-400 hover:border-white/10 hover:text-white'
+                              }`}
+                            >
+                              <Clock className="mr-1.5 h-3 w-3 shrink-0" />
+                              {time}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Required Info for Schedule */}
+                      <div>
+                        <span className="mb-3 block text-xs font-semibold text-neutral-400 uppercase">
+                          3. Seus Dados de Contato
+                        </span>
+                        <div className="flex flex-col gap-3">
+                          <input
+                            type="text"
+                            placeholder="Nome completo"
+                            value={schedulerName}
+                            onChange={(e) => setSchedulerName(e.target.value)}
+                            className="focus:border-primary-500/50 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
+                            required
+                          />
+                          <input
+                            type="email"
+                            placeholder="E-mail profissional"
+                            value={schedulerEmail}
+                            onChange={(e) => setSchedulerEmail(e.target.value)}
+                            className="focus:border-primary-500/50 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
+                            required
+                          />
+                          <input
+                            type="text"
+                            placeholder="Empresa"
+                            value={schedulerCompany}
+                            onChange={(e) =>
+                              setSchedulerCompany(e.target.value)
+                            }
+                            className="focus:border-primary-500/50 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
+                            required
+                          />
+                          <input
+                            type="text"
+                            placeholder="Notas adicionais (opcional)"
+                            value={schedulerNotes}
+                            onChange={(e) => setSchedulerNotes(e.target.value)}
+                            className="focus:border-primary-500/50 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-neutral-600 focus:outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Confirm Schedule Button */}
+                      <GlowButton
+                        type="submit"
+                        loading={schedulerLoading}
+                        variant="primary"
+                        fullWidth
+                      >
+                        {schedulerLoading
+                          ? 'Reservando Horário...'
+                          : 'Confirmar Agendamento'}
+                      </GlowButton>
+
+                      {schedulerError && (
+                        <div className="rounded-xl border border-rose-500/30 bg-rose-500/5 p-4 text-xs font-medium text-rose-400">
+                          {schedulerError}
+                        </div>
+                      )}
+                    </form>
+                  </>
+                )}
               </GlassCard>
             </div>
           </div>
